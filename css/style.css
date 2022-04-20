@@ -253,9 +253,6 @@
         flex-direction: column;
         justify-content: center;
     }
-    .box-quizz {
-        width: 100%;
-    }
     @media (min-width: 320px) and (max-width: 768px) {
         .no-quizz-box,
         .title-seus-quizz {

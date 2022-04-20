@@ -1,4 +1,4 @@
-getQuizzes();
+//getQuizzes();
 function exibirQuizz() {
     document.querySelector(".screen1").classList.add("esconde");
     document.querySelector(".screen2").classList.remove("esconde");
