@@ -74,7 +74,9 @@
     }
     
     .todos-os-quizzes h2,
-    .seus-quizzes h2 {
+    .seus-quizzes h2,
+    .page-title,
+    form label {
         font-size: 20px;
         font-weight: 700;
     }
@@ -119,6 +121,45 @@
         text-decoration: underline;
     }
     
+    .cria-quizz-page1,
+    .cria-quizz-page2 {
+        background-color: #e5e5e5;
+        height: 100rem;
+    }
+    
+    .cria-quizz-page1 h2,
+    .cria-quizz-page2 {
+        padding-top: 135px;
+    }
+    
+    form {
+        background-color: #fff;
+        margin-top: 50px;
+        padding: 1%;
+        width: 50%;
+        box-shadow: 0 0 10px gray;
+    }
+    
+    form input {
+        width: 100%;
+        padding: 2%;
+        margin: 1% 0;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        font-size: 19px;
+        font-style: italic;
+    }
+    
+    .btn-form1 {
+        color: #fff;
+        margin-top: 50px;
+        background-color: #EC362D;
+        font-size: 21px;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 15px;
+    }
+    
     @media (min-width: 320px) and (max-width: 768px) {
         .no-quizz-box,
         .title-seus-quizz {
@@ -135,5 +176,12 @@
         .box-quizz {
             width: 100%;
             margin: 20px 0;
+        }
+        form {
+            width: 100%;
+        }
+        .btn-form1 {
+            padding: 15px 30px;
+            font-size: 18px;
         }
     }

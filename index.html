@@ -37,7 +37,7 @@
         </section>
     </div>
 
-    <section class="seus-quizzes">
+    <section class="seus-quizzes esconde">
         <div class="title-seus-quizz">
             <h2>Seus Quizzes</h2>
             <ion-icon name="add-circle"></ion-icon>
@@ -64,7 +64,7 @@
         </section>
     </section>
 
-    <section class="todos-os-quizzes">
+    <section class="todos-os-quizzes esconde">
         <h2>Todos os Quizzes</h2>
         <section class="area-quizzes flex wrap">
 
@@ -103,11 +103,45 @@
                     <h3>Título Quizz</h3>
                 </div>
             </div>
-
         </section>
+    </section>
 
+    <section class="cria-quizz-page1 esconde">
+        <h2 class="page-title flex">Comece pelo começo</h2>
+        <div class="flex">
+            <form action="" method="post">
+                <input type="text" name="tituloQuizz" id="tituloQuizz" placeholder="Título do seu quizz">
+                <input type="url" name="tituloQuizz" id="tituloQuizz" placeholder="Url da imagem do seu quizz">
+                <input type="number" name="tituloQuizz" id="tituloQuizz" placeholder="Quantidade de perguntas do quizz">
+                <input type="number" name="tituloQuizz" id="tituloQuizz" placeholder="Quantidade de níveis do quizz">
+            </form>
 
+        </div>
+        <div class="flex">
+            <button class="btn-form1" type="submit">
+                Prosseguir pra criar perguntas
+            </button>
+        </div>
+    </section>
 
+    <section class="cria-quizz-page2">
+        <h2 class="page-title flex">Crie suas perguntas</h2>
+        <div class="flex">
+            <form action="" method="post">
+                <label><h2>Pergunta 1</h2></label>
+                <input type="text" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
+                <input type="text" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
+                <label>Resposta correta</label>
+                <input type="number" name="tituloQuizz" id="tituloQuizz" placeholder="Quantidade de perguntas do quizz">
+                <input type="number" name="tituloQuizz" id="tituloQuizz" placeholder="Quantidade de níveis do quizz">
+            </form>
+
+        </div>
+        <div class="flex">
+            <button class="btn-form1" type="submit">
+                Prosseguir pra criar perguntas
+            </button>
+        </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
