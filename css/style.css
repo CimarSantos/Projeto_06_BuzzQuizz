@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-.esconde {
-    display: none;
-}
-
 .flex {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.esconde {
+    display: none;
 }
 
 .wrap {
@@ -122,14 +122,22 @@ form label {
 }
 
 .cria-quizz-page1,
-.cria-quizz-page2 {
+.cria-quizz-page2,
+.cria-quizz-page3,
+.cria-quizz-page4 {
     background-color: #e5e5e5;
-    height: 100rem;
 }
 
 .cria-quizz-page1 h2,
-.cria-quizz-page2 {
+.cria-quizz-page2,
+.cria-quizz-page3,
+.cria-quizz-page4 {
     padding-top: 135px;
+}
+
+.cria-quizz-page4 .box-quizz {
+    margin-top: 5%;
+    width: 30%;
 }
 
 form {
@@ -150,14 +158,37 @@ form input {
     font-style: italic;
 }
 
-.btn-form1 {
+.btn-form1,
+.btn-form2,
+.btn-form3,
+.btn-form4 {
     color: #fff;
-    margin-top: 50px;
+    margin: 50px 0;
     background-color: #EC362D;
     font-size: 21px;
     padding: 15px 30px;
     border: none;
     border-radius: 15px;
+    cursor: pointer;
+}
+
+.btn-form1:hover,
+.btn-form2:hover,
+.btn-form3:hover,
+.btn-form4:hover {
+    color: #EC362D;
+    background-color: #fff;
+    border: 1px solid #EC362D;
+}
+
+form div {
+    margin: 20px 0;
+}
+
+form div ion-icon {
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 30rem;
 }
 
 .imagem-quiz {
@@ -294,7 +325,8 @@ form input {
     cursor: pointer;
 }
 
-.back {
+.back,
+.voltarHome {
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -304,6 +336,11 @@ form input {
     margin-top: 10px;
     margin-bottom: 50px;
     cursor: pointer;
+}
+
+.voltarHome {
+    margin: 0;
+    padding-bottom: 7.5%;
 }
 
 .botoes-final {
