@@ -452,6 +452,7 @@ form div ion-icon {
     }
     .opcao {
         width: 330px;
+        transition: all 2s;
     }
     form div {
         margin: 20px 0;

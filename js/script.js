@@ -50,7 +50,7 @@ function trocaQuizz(info) {
     }
     document.querySelector(".screen1").classList.add("esconde");
     document.querySelector(".screen2").classList.remove("esconde");
-    scrollToBottom(img);
+    scrollToBottom(img, "start");
 }
 
 function getQuizzes() {
@@ -94,8 +94,7 @@ function selecionarOpcao(el, bool) {
     }
     el.classList.add("selecao");
     respondidas++;
-    console.log(el.nextSibling);
-    setTimeout(scrollToBottom(el.nextSibling), 2000);
+    setTimeout(scrollToBottom, 2000, pai.parentNode.nextSibling, "end");
 }
 
 function scrollToBottom(el) {
@@ -120,4 +119,8 @@ function criarQuizzToPage3() {
 function criarQuizzToPage4() {
     document.querySelector(".cria-quizz-page3").classList.add("esconde");
     document.querySelector(".cria-quizz-page4").classList.remove("esconde");
+}
+
+function scrollToBottom(el, local) {
+    el.scrollIntoView({ block: local, behavior: 'smooth' });
 }
