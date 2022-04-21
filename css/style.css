@@ -354,4 +354,22 @@ form input {
         width: 330px;
         height: 175px;
     }
+    @media (min-width: 320px) and (max-width: 768px) {
+        .no-quizz-box,
+        .title-seus-quizz {
+            width: 90%;
+            margin-top: 100px;
+            gap: 55%;
+        }
+        .todos-os-quizzes,
+        .seus-quizzes {
+            margin: 0;
+            padding: 20px;
+            width: 100%;
+        }
+        .box-quizz {
+            width: 100%;
+            margin: 20px 0;
+        }
+    }
 }
