@@ -5,9 +5,7 @@
     align-items: center;
 }
 
-.esconde {
-    display: none;
-}
+
 
 .wrap {
     flex-wrap: wrap;
@@ -255,7 +253,12 @@ form div ion-icon {
     justify-content: center;
     flex-wrap: wrap;
 }
-
+.opcao {
+    margin-right: 12px;
+    margin-bottom: 5px;
+    width: 163px;
+    word-wrap: break-word;
+}
 .opcao img {
     cursor: pointer;
     margin-right: 12px;
@@ -377,6 +380,22 @@ form div ion-icon {
     background-size: cover;
     background-repeat: no-repeat;
 }
+.esconde {
+    display: none;
+}
+.selecionados div {
+    opacity: 0.5;
+    pointer-events:none
+}
+.selecionados h5 {
+    color: #FF4B4B;
+}
+.selecionados .true h5 {
+    color: #009C22;
+}
+.selecionados .selecao {
+    opacity: 1;
+}
 
 @media (min-width: 320px) and (max-width: 768px) {
     .no-quizz-box,
@@ -415,7 +434,7 @@ form div ion-icon {
     }
 }
 
-@media (min-width: 769px) and (max-width: 1290px) {
+@media (min-width: 769px) {
     .pergunta {
         width: 65%;
     }
@@ -426,6 +445,9 @@ form div ion-icon {
     .opcao img {
         width: 330px;
         height: 175px;
+    }
+    .opcao { 
+        width: 330px;    
     }
     form div {
         margin: 20px 0;

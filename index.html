@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
     <header class="barra-topo flex">
         <h1>BuzzQuizz</h1>
@@ -156,7 +155,7 @@
             </div>
         </div>
 
-        <div class="nivel">
+        <div class="nivel esconde">
             <div class="nivel-text">
                 <h5>
                     88% de acerto: Você é praticamente um aluno de Hogwarts!
@@ -165,9 +164,9 @@
             <img src="/img/image 10.png">
             <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</p>
         </div>
-        <div class="botoes-final">
+        <div class="botoes-final esconde">
             <button class="restart">Reiniciar Quizz</button>
-            <h4 class="back">Voltar pra home</h4>
+            <h4 class="back" onclick="backHome()">Voltar pra home</h4>
         </div>
     </main>
 
@@ -366,11 +365,6 @@
         </div>
 
     </section>
-
-    <main class="screen3 esconde">
-
-
-    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/script.js"></script>
