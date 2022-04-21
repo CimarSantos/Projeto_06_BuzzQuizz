@@ -1,4 +1,4 @@
-//getQuizzes();
+getQuizzes();
 function exibirQuizz() {
     document.querySelector(".screen1").classList.add("esconde");
     document.querySelector(".screen2").classList.remove("esconde");
@@ -12,9 +12,12 @@ function loadQuizzes(info) {
     quizzes.innerHTML = '';
     for (let i=0; i<info.data.length; i++) {
         quizzes.innerHTML+= `
-        <div class="box-quizz flex" onclick="exibirQuizz()">
-            <div class="title-quizz">
-                <h3>${info.data[i].title}</h3>
+        <div class="caixa-quizz" onclick="exibirQuizz()">
+            <img src="${info.data[i].image}">
+            <div class="shadow-quizz flex">
+                <div class="title-quizz">
+                    <h3>${info.data[i].title}</h3>
+                </div>
             </div>
         </div>`
     }
