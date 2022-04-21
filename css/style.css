@@ -5,8 +5,6 @@
     align-items: center;
 }
 
-
-
 .wrap {
     flex-wrap: wrap;
 }
@@ -177,7 +175,6 @@ form input {
 .btn-form4:hover {
     color: #EC362D;
     background-color: #fff;
-    border: 1px solid #EC362D;
 }
 
 form div {
@@ -253,12 +250,14 @@ form div ion-icon {
     justify-content: center;
     flex-wrap: wrap;
 }
+
 .opcao {
     margin-right: 12px;
     margin-bottom: 5px;
     width: 163px;
     word-wrap: break-word;
 }
+
 .opcao img {
     cursor: pointer;
     margin-right: 12px;
@@ -330,7 +329,7 @@ form div ion-icon {
 }
 
 .back,
-.voltarHome {
+.voltarHome p {
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -380,19 +379,24 @@ form div ion-icon {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 .esconde {
     display: none;
 }
+
 .selecionados div {
     opacity: 0.5;
-    pointer-events:none
+    pointer-events: none
 }
+
 .selecionados h5 {
     color: #FF4B4B;
 }
+
 .selecionados .true h5 {
     color: #009C22;
 }
+
 .selecionados .selecao {
     opacity: 1;
 }
@@ -446,8 +450,8 @@ form div ion-icon {
         width: 330px;
         height: 175px;
     }
-    .opcao { 
-        width: 330px;    
+    .opcao {
+        width: 330px;
     }
     form div {
         margin: 20px 0;

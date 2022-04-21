@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
     <header class="barra-topo flex">
         <h1>BuzzQuizz</h1>
@@ -182,7 +183,7 @@
 
         </div>
         <div class="flex">
-            <button class="btn-form1" type="submit">
+            <button class="btn-form1" type="submit" onclick="criarQuizzToPage2()">
                 Prosseguir pra criar perguntas
             </button>
         </div>
@@ -288,7 +289,7 @@
 
         </div>
         <div class="flex">
-            <button class="btn-form2" type="submit">
+            <button class="btn-form2" type="submit" onclick="criarQuizzToPage3()">
                 Prosseguir pra criar níveis
             </button>
         </div>
@@ -338,7 +339,7 @@
 
         </div>
         <div class="flex">
-            <button class="btn-form3" type="submit">
+            <button class="btn-form3" type="submit" onclick="criarQuizzToPage4()">
                 Finalizar quizz
             </button>
         </div>
@@ -361,7 +362,7 @@
                 </button>
         </div>
         <div class="flex voltarHome">
-            <p>Voltar pra home</p>
+            <p onclick="backHome()">Voltar pra home</p>
         </div>
 
     </section>

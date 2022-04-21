@@ -1,23 +1,25 @@
-let pontos=0;
-let respondidas=0;
-let corretas=0;
+let pontos = 0;
+let respondidas = 0;
+let corretas = 0;
 getQuizzes();
+
 function exibirQuizz(el) {
     let id = el.querySelector("ul").innerHTML;
     let promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${id}`);
     promise.then(trocaQuizz);
 }
+
 function trocaQuizz(info) {
     let img = document.querySelector(".imagem-quiz").querySelector("img");
-    img.setAttribute('src',info.data.image);
+    img.setAttribute('src', info.data.image);
     document.querySelector(".imagem-quiz").querySelector("h4").innerHTML = info.data.title;
     let perguntas = document.querySelector(".perguntas");
-    perguntas.innerHTML='';
-    pontos=info.data.questions.length;
-    for (let i=0; i<info.data.questions.length; i++) {
-    info.data.questions[i].answers = info.data.questions[i].answers.sort(scramble);
-    perguntas.innerHTML+=
-    `<div class="pergunta">
+    perguntas.innerHTML = '';
+    pontos = info.data.questions.length;
+    for (let i = 0; i < info.data.questions.length; i++) {
+        info.data.questions[i].answers = info.data.questions[i].answers.sort(scramble);
+        perguntas.innerHTML +=
+            `<div class="pergunta">
 
             <div class="pergunta-text" style="background-color:${info.data.questions[i].color}">
                 <h4>${info.data.questions[i].title}</h4>
@@ -50,15 +52,17 @@ function trocaQuizz(info) {
     document.querySelector(".screen2").classList.remove("esconde");
     scrollToBottom(img);
 }
+
 function getQuizzes() {
     let promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes");
     promise.then(loadQuizzes);
 }
+
 function loadQuizzes(info) {
     let quizzes = document.querySelector(".todos-os-quizzes .area-quizzes");
     quizzes.innerHTML = '';
-    for (let i=0; i<info.data.length; i++) {
-        quizzes.innerHTML+= `
+    for (let i = 0; i < info.data.length; i++) {
+        quizzes.innerHTML += `
         <div class="caixa-quizz" onclick="exibirQuizz(this)">
             <ul class="idQuizz esconde">${info.data[i].id}</ul>
             <img src="${info.data[i].image}">
@@ -70,13 +74,15 @@ function loadQuizzes(info) {
         </div>`
     }
 }
+
 function backHome() {
     document.querySelector(".screen1").classList.remove("esconde");
     document.querySelector(".screen2").classList.add("esconde");
+    document.querySelector(".cria-quizz-page4").classList.add("esconde");
 }
 
-function scramble() { 
-	return Math.random() - 0.5; 
+function scramble() {
+    return Math.random() - 0.5;
 }
 
 function selecionarOpcao(el, bool) {
@@ -94,4 +100,24 @@ function selecionarOpcao(el, bool) {
 
 function scrollToBottom(el) {
     el.scrollIntoView(true);
+}
+
+function criarQuizz() {
+    document.querySelector(".screen1").classList.add("esconde");
+    document.querySelector(".cria-quizz-page1").classList.remove("esconde");
+}
+
+function criarQuizzToPage2() {
+    document.querySelector(".cria-quizz-page1").classList.add("esconde");
+    document.querySelector(".cria-quizz-page2").classList.remove("esconde");
+}
+
+function criarQuizzToPage3() {
+    document.querySelector(".cria-quizz-page2").classList.add("esconde");
+    document.querySelector(".cria-quizz-page3").classList.remove("esconde");
+}
+
+function criarQuizzToPage4() {
+    document.querySelector(".cria-quizz-page3").classList.add("esconde");
+    document.querySelector(".cria-quizz-page4").classList.remove("esconde");
 }
