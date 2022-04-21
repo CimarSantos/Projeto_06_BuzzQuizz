@@ -20,129 +20,233 @@
 
 <body>
 
-    <div class="flex">
+    <main class="screen1">
+        <div class="flex">
+
+            <header class="barra-topo flex">
+                <h1>BuzzQuizz</h1>
+            </header>
+
+            <section class="no-quizz-box esconde">
+
+                <p>Você não tem nenhum <br> quizz ainda :( </p>
+
+                <button onclick="criarQuizz()">
+                    Criar Quizz
+                </button>
+
+            </section>
+        </div>
+
+        <section class="seus-quizzes esconde">
+            <div class="title-seus-quizz">
+                <h2>Seus Quizzes</h2>
+                <ion-icon name="add-circle" onclick="criarQuizz()"></ion-icon>
+            </div>
+            <section class="area-quizzes flex wrap">
+
+                <div class="box-quizz flex" onclick="exibirQuizz()">
+                    <div class="title-quizz">
+                        <h3>Título Quizz</h3>
+                    </div>
+                </div>
+
+                <div class="box-quizz flex" onclick="exibirQuizz()">
+                    <div class="title-quizz">
+                        <h3>Título Quizz</h3>
+                    </div>
+                </div>
+
+                <div class="box-quizz flex">
+                    <div class="title-quizz">
+                        <h3>Título Quizz</h3>
+                    </div>
+                </div>
+            </section>
+        </section>
+        </section>
+
+        <section class="todos-os-quizzes esconde">
+            <h2>Todos os Quizzes</h2>
+            <section class="area-quizzes flex wrap">
+
+                <div class="box-quizz flex">
+                    <div class="title-quizz">
+                        <h3>Título Quizz</h3>
+                    </div>
+
+                    <div class="box-quizz flex">
+                        <div class="title-quizz">
+                            <h3>Título Quizz</h3>
+                        </div>
+                    </div>
+
+                    <div class="box-quizz flex">
+                        <div class="title-quizz">
+                            <h3>Título Quizz</h3>
+                        </div>
+                    </div>
+
+                    <div class="box-quizz flex">
+                        <div class="title-quizz">
+                            <h3>Título Quizz</h3>
+                        </div>
+                    </div>
+
+                    <div class="box-quizz flex">
+                        <div class="title-quizz">
+                            <h3>Título Quizz</h3>
+                        </div>
+                    </div>
+
+                    <div class="box-quizz flex">
+                        <div class="title-quizz">
+                            <h3>Título Quizz</h3>
+                        </div>
+                    </div>
+
+            </section>
+
+
+
+        </section>
+    </main>
+
+    <main class="screen2 esconde">
 
         <header class="barra-topo flex">
             <h1>BuzzQuizz</h1>
         </header>
 
-        <section class="no-quizz-box esconde">
-
-            <p>Você não tem nenhum <br> quizz ainda :( </p>
-
-            <button>
-                Criar Quizz
-            </button>
-
-        </section>
-    </div>
-
-    <section class="seus-quizzes esconde">
-        <div class="title-seus-quizz">
-            <h2>Seus Quizzes</h2>
-            <ion-icon name="add-circle"></ion-icon>
+        <div class="imagem-quiz">
+            <img src="http://3.bp.blogspot.com/-P_gTm8O4e34/UG79eZn6EBI/AAAAAAAAAW8/2-VKPd2oHzg/s1600/otaku.jpg">
+            <div></div>
+            <h4>NOME DO QUIZ</h4>
         </div>
-        <section class="area-quizzes flex wrap">
 
-            <div class="box-quizz flex">
-                <div class="title-quizz">
-                    <h3>Título Quizz</h3>
+        <div class="perguntas">
+            <div class="pergunta">
+
+                <div class="pergunta-text">
+                    <h4>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</h4>
                 </div>
+
+                <div class="opcoes">
+
+                    <div class="opcao" onclick="selecionarOpcao(this)">
+                        <img src="/img/image 3.png">
+                        <h5>Gatineo</h5>
+                    </div>
+                    <div class="opcao" onclick="selecionarOpcao(this)">
+                        <img src="/img/image 3.png">
+                        <h5>Gatineo</h5>
+                    </div>
+                    <div class="opcao" onclick="selecionarOpcao(this)">
+                        <img src="/img/image 3.png">
+                        <h5>Gatineo</h5>
+                    </div>
+                    <div class="opcao" onclick="selecionarOpcao(this)">
+                        <img src="/img/image 3.png">
+                        <h5>Gatineo</h5>
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="box-quizz flex">
-                <div class="title-quizz">
-                    <h3>Título Quizz</h3>
+            <div class="pergunta">
+
+                <div class="pergunta-text">
+                    <h4>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</h4>
                 </div>
-            </div>
 
-            <div class="box-quizz flex">
-                <div class="title-quizz">
-                    <h3>Título Quizz</h3>
+                <div class="opcoes">
+
+                    <div class="opcao" onclick="selecionarOpcao(this)">
+                        <img src="/img/image 3.png">
+                        <h5>Gatineo</h5>
+                    </div>
+                    <div class="opcao" onclick="selecionarOpcao(this)">
+                        <img src="/img/image 3.png">
+                        <h5>Gatineo</h5>
+                    </div>
+                    <div class="opcao" onclick="selecionarOpcao(this)">
+                        <img src="/img/image 3.png">
+                        <h5>Gatineo</h5>
+                    </div>
+                    <div class="opcao" onclick="selecionarOpcao(this)">
+                        <img src="/img/image 3.png">
+                        <h5>Gatineo</h5>
+                    </div>
+
                 </div>
+
             </div>
-        </section>
-    </section>
-
-    <section class="todos-os-quizzes esconde">
-        <h2>Todos os Quizzes</h2>
-        <section class="area-quizzes flex wrap">
-
-            <div class="box-quizz flex">
-                <div class="title-quizz">
-                    <h3>Título Quizz</h3>
-                </div>
-            </div>
-
-            <div class="box-quizz flex">
-                <div class="title-quizz">
-                    <h3>Título Quizz</h3>
-                </div>
-            </div>
-
-            <div class="box-quizz flex">
-                <div class="title-quizz">
-                    <h3>Título Quizz</h3>
-                </div>
-            </div>
-
-            <div class="box-quizz flex">
-                <div class="title-quizz">
-                    <h3>Título Quizz</h3>
-                </div>
-            </div>
-
-            <div class="box-quizz flex">
-                <div class="title-quizz">
-                    <h3>Título Quizz</h3>
-                </div>
-            </div>
-
-            <div class="box-quizz flex">
-                <div class="title-quizz">
-                    <h3>Título Quizz</h3>
-                </div>
-            </div>
-        </section>
-    </section>
-
-    <section class="cria-quizz-page1 esconde">
-        <h2 class="page-title flex">Comece pelo começo</h2>
-        <div class="flex">
-            <form action="" method="post">
-                <input type="text" name="tituloQuizz" id="tituloQuizz" placeholder="Título do seu quizz">
-                <input type="url" name="tituloQuizz" id="tituloQuizz" placeholder="Url da imagem do seu quizz">
-                <input type="number" name="tituloQuizz" id="tituloQuizz" placeholder="Quantidade de perguntas do quizz">
-                <input type="number" name="tituloQuizz" id="tituloQuizz" placeholder="Quantidade de níveis do quizz">
-            </form>
-
         </div>
-        <div class="flex">
-            <button class="btn-form1" type="submit">
+
+        <div class="nivel">
+            <div class="nivel-text">
+                <h5>
+                    88% de acerto: Você é praticamente um aluno de Hogwarts!
+                </h5>
+            </div>
+            <img src="/img/image 10.png">
+            <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</p>
+        </div>
+        </section>
+        </section>
+
+        <section class="cria-quizz-page1 esconde">
+            <h2 class="page-title flex">Comece pelo começo</h2>
+            <div class="flex">
+                <form action="" method="post">
+                    <input type="text" name="tituloQuizz" id="tituloQuizz" placeholder="Título do seu quizz">
+                    <input type="url" name="tituloQuizz" id="tituloQuizz" placeholder="Url da imagem do seu quizz">
+                    <input type="number" name="tituloQuizz" id="tituloQuizz" placeholder="Quantidade de perguntas do quizz">
+                    <input type="number" name="tituloQuizz" id="tituloQuizz" placeholder="Quantidade de níveis do quizz">
+                </form>
+
+            </div>
+            <div class="flex">
+                <button class="btn-form1" type="submit">
                 Prosseguir pra criar perguntas
             </button>
-        </div>
-    </section>
+            </div>
+        </section>
 
-    <section class="cria-quizz-page2">
-        <h2 class="page-title flex">Crie suas perguntas</h2>
-        <div class="flex">
-            <form action="" method="post">
-                <label><h2>Pergunta 1</h2></label>
-                <input type="text" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
-                <input type="text" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
-                <label>Resposta correta</label>
-                <input type="number" name="tituloQuizz" id="tituloQuizz" placeholder="Quantidade de perguntas do quizz">
-                <input type="number" name="tituloQuizz" id="tituloQuizz" placeholder="Quantidade de níveis do quizz">
-            </form>
+        <section class="cria-quizz-page2">
+            <h2 class="page-title flex">Crie suas perguntas</h2>
+            <div class="flex">
+                <form action="" method="post">
+                    <label><h2>Pergunta 1</h2></label>
+                    <input type="text" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
+                    <input type="text" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
+                    <label>Resposta correta</label>
+                    <input type="number" name="tituloQuizz" id="tituloQuizz" placeholder="Quantidade de perguntas do quizz">
+                    <input type="number" name="tituloQuizz" id="tituloQuizz" placeholder="Quantidade de níveis do quizz">
+                </form>
 
-        </div>
-        <div class="flex">
-            <button class="btn-form1" type="submit">
+            </div>
+            <div class="flex">
+                <button class="btn-form1" type="submit">
                 Prosseguir pra criar perguntas
             </button>
+            </div>
+        </section>
+
+        <div class="botoes-final">
+            <button class="restart">Reiniciar Quizz</button>
+            <h4 class="back">Voltar para home</h4>
         </div>
-    </section>
+    </main>
+
+    <main class="screen3 esconde">
+
+        <header class="barra-topo flex">
+            <h1>BuzzQuizz</h1>
+        </header>
+
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/script.js"></script>
