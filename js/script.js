@@ -48,7 +48,7 @@ function trocaQuizz(info) {
     }
     document.querySelector(".screen1").classList.add("esconde");
     document.querySelector(".screen2").classList.remove("esconde");
-    scrollToBottom(img);
+    scrollToBottom(img, "start");
 }
 function getQuizzes() {
     let promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes");
@@ -88,10 +88,9 @@ function selecionarOpcao(el, bool) {
     }
     el.classList.add("selecao");
     respondidas++;
-    console.log(el.nextSibling);
-    setTimeout(scrollToBottom(el.nextSibling), 2000);
+    setTimeout(scrollToBottom, 2000, pai.parentNode.nextSibling, "end");
 }
 
-function scrollToBottom(el) {
-    el.scrollIntoView(true);
+function scrollToBottom(el, local) {
+    el.scrollIntoView({ block: local,  behavior: 'smooth' });
 }
