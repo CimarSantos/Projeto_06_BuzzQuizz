@@ -104,11 +104,13 @@ function scrollToBottom(el) {
 function criarQuizz() {
     document.querySelector(".screen1").classList.add("esconde");
     document.querySelector(".cria-quizz-page1").classList.remove("esconde");
+
 }
 
 function criarQuizzToPage2() {
     document.querySelector(".cria-quizz-page1").classList.add("esconde");
     document.querySelector(".cria-quizz-page2").classList.remove("esconde");
+
 }
 
 function criarQuizzToPage3() {
@@ -123,4 +125,23 @@ function criarQuizzToPage4() {
 
 function scrollToBottom(el, local) {
     el.scrollIntoView({ block: local, behavior: 'smooth' });
+}
+
+function infoBasicasQuizz(tituloQuizz, urlImagemQuizz) {
+
+    tituloQuizz = document.querySelector("#tituloQuizz").value;
+
+    console.log(tituloQuizz.length);
+
+    if (tituloQuizz.length < 20) {
+        alert("O título deve ter pelo menos 20 caracteres");
+        document.querySelector("#tituloQuizz").classList.add("inputError");
+        document.querySelector("#tituloQuizz").value = '';
+    } else {
+        document.querySelector("#tituloQuizz").classList.remove("inputError");
+    }
+
+
+
+
 }

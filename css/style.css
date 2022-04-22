@@ -5,6 +5,11 @@
     align-items: center;
 }
 
+.inputError {
+    border: 1px solid red;
+    background-color: lightcoral;
+}
+
 .wrap {
     flex-wrap: wrap;
 }
