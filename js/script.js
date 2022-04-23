@@ -127,11 +127,9 @@ function scrollToBottom(el, local) {
     el.scrollIntoView({ block: local, behavior: 'smooth' });
 }
 
-function infoBasicasQuizz(tituloQuizz, urlImagemQuizz) {
+function infoBasicasQuizz(tituloQuizz, urlImageQuizz, qtdPerguntas, qtdNiveis) {
 
     tituloQuizz = document.querySelector("#tituloQuizz").value;
-
-    console.log(tituloQuizz.length);
 
     if (tituloQuizz.length < 20) {
         alert("O título deve ter pelo menos 20 caracteres");
@@ -142,6 +140,47 @@ function infoBasicasQuizz(tituloQuizz, urlImagemQuizz) {
     }
 
 
+    document.querySelector("#urlImagemQuizz").addEventListener("mouseout", function() {
 
+        let regex = XRegExp("[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?");
+        urlImageQuizz = document.querySelector("#urlImagemQuizz").value;
+        let result = regex.test(urlImageQuizz);
+
+        if (result !== true || result === '') {
+            alert("Digite corretamente a URL da imagem do seu quizz");
+            document.querySelector("#urlImagemQuizz").classList.add("inputError");
+            document.querySelector("#urlImagemQuizz").value = '';
+
+        } else {
+            document.querySelector("#urlImagemQuizz").classList.remove("inputError");
+        }
+
+    });
+
+    document.querySelector("#qtdPerguntas").addEventListener("mouseout", function() {
+
+        qtdPerguntas = document.querySelector("#qtdPerguntas").value;
+
+        if (qtdPerguntas !== true && qtdPerguntas < 3) {
+            alert("O seu quizz deve ter no mínimo 3 perguntas");
+            document.querySelector("#qtdPerguntas").classList.add("inputError");
+            document.querySelector("#qtdPerguntas").value = '';
+        } else {
+            document.querySelector("#qtdPerguntas").classList.remove("inputError");
+        }
+    });
+
+    document.querySelector("#qtdNiveis").addEventListener("mouseout", veNivel = () => {
+
+        qtdNiveis = document.querySelector("#qtdNiveis").value;
+
+        if (qtdNiveis < 2) {
+            alert("O seu quizz deve ter no mínimo 2 níveis");
+            document.querySelector("#qtdNiveis").classList.add("inputError");
+            document.querySelector("#qtdNiveis").value = '';
+        } else {
+            document.querySelector("#qtdNiveis").classList.remove("inputError");
+        }
+    });
 
 }
