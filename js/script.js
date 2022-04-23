@@ -195,50 +195,54 @@ function infoBasicasQuizz(tituloQuizz, urlImageQuizz, qtdPerguntas, qtdNiveis) {
         document.querySelector("#tituloQuizz").classList.remove("inputError");
     }
 
-
-    document.querySelector("#urlImagemQuizz").addEventListener("mouseout", function() {
+    let result;
+    document.querySelector("#urlImagemQuizz").addEventListener("change", function() {
 
         let regex = XRegExp("[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?");
         urlImageQuizz = document.querySelector("#urlImagemQuizz").value;
-        let result = regex.test(urlImageQuizz);
+        result = regex.test(urlImageQuizz);
 
         if (result !== true || result === '') {
             alert("Digite corretamente a URL da imagem do seu quizz");
             document.querySelector("#urlImagemQuizz").classList.add("inputError");
-            document.querySelector("#urlImagemQuizz").value = '';
-
         } else {
             document.querySelector("#urlImagemQuizz").classList.remove("inputError");
         }
 
     });
 
-    document.querySelector("#qtdPerguntas").addEventListener("mouseout", function() {
+    document.querySelector("#qtdPerguntas").addEventListener("change", function() {
 
         qtdPerguntas = document.querySelector("#qtdPerguntas").value;
 
-        if (qtdPerguntas !== true && qtdPerguntas < 3) {
+        if (qtdPerguntas < 3) {
             alert("O seu quizz deve ter no mínimo 3 perguntas");
             document.querySelector("#qtdPerguntas").classList.add("inputError");
-            document.querySelector("#qtdPerguntas").value = '';
+            document.querySelector("#qtdPerguntas").value = 3;
         } else {
             document.querySelector("#qtdPerguntas").classList.remove("inputError");
         }
     });
 
-    document.querySelector("#qtdNiveis").addEventListener("mouseout", veNivel = () => {
+    document.querySelector("#qtdNiveis").addEventListener("change", function() {
 
         qtdNiveis = document.querySelector("#qtdNiveis").value;
 
         if (qtdNiveis < 2) {
             alert("O seu quizz deve ter no mínimo 2 níveis");
             document.querySelector("#qtdNiveis").classList.add("inputError");
-            document.querySelector("#qtdNiveis").value = '';
+            document.querySelector("#qtdNiveis").value = 2;
         } else {
             document.querySelector("#qtdNiveis").classList.remove("inputError");
         }
     });
 
+    let URL = document.querySelector("#urlImagemQuizz").classList.contains("inputError");
+    let numPerguntas = document.querySelector("#qtdPerguntas").value;
+    let numNiveis = document.querySelector("#qtdNiveis").value;
+    if (tituloQuizz.length >= 20 && URL !== true && numPerguntas >= 3 && numNiveis >= 2) {
+        document.querySelector(".btn-form1").removeAttribute("disabled");
+    }
 }
 
 function restart() {
