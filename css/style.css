@@ -405,6 +405,14 @@ form div ion-icon {
 .selecionados .selecao {
     opacity: 1;
 }
+.selecaoPerguntas {
+    transition: all .5s;
+    height: 70px;
+    overflow-y: hidden;
+}
+.expandido {
+    height: 680px;
+}
 
 @media (min-width: 320px) and (max-width: 768px) {
     .no-quizz-box,

@@ -2,8 +2,45 @@ let pontos = 0;
 let respondidas = 0;
 let corretas = 0;
 let quizzInfo;
+let numberOfQuestions=0;
+let numberOfLevels=0;
+let newQuizz= {
+    title: "Título do quizz",
+	image: "https://http.cat/411.jpg",
+	questions: [
+        {
+            title: "Título da pergunta 1",
+			color: "#123456",
+			answers: [
+				{
+					text: "Texto da resposta 1",
+					image: "https://http.cat/411.jpg",
+					isCorrectAnswer: true
+				},
+				{
+					text: "Texto da resposta 2",
+					image: "https://http.cat/412.jpg",
+					isCorrectAnswer: false
+				}
+			]
+        }
+    ],
+    levels: [
+		{
+			title: "Título do nível 1",
+			image: "https://http.cat/411.jpg",
+			text: "Descrição do nível 1",
+			minValue: 0
+		},
+		{
+			title: "Título do nível 2",
+			image: "https://http.cat/412.jpg",
+			text: "Descrição do nível 2",
+			minValue: 50
+		}
+	]
+}
 getQuizzes();
-
 function exibirQuizz(el) {
     let id = el.querySelector("ul").innerHTML;
     let promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${id}`);
@@ -99,6 +136,7 @@ function loadQuizzes(info) {
 }
 
 function backHome() {
+    getQuizzes();
     let el = document.querySelector(".screen1");
     el.classList.remove("esconde");
     document.querySelector(".screen2").classList.add("esconde");
@@ -164,9 +202,95 @@ function criarQuizz() {
 }
 
 function criarQuizzToPage2() {
+    newQuizz.title = document.getElementById("tituloQuizz").value;
+    newQuizz.image = document.getElementById("urlImagemQuizz").value;
+    numberOfQuestions = document.getElementById("qtdPerguntas").value;
+    numberOfLevels = document.getElementById("qtdNiveis").value;
+
+    let campos = document.querySelector(".cria-quizz-page2");
+    campos.innerHTML= `        
+    <h2 class="page-title flex">Crie suas perguntas</h2>
+    <div class="flex">
+        <form action="" method="post" class="expandido selecaoPerguntas">
+            <div class="flex">
+                <label>Pergunta 1</label>
+                <ion-icon name="paper" onclick="expandir(this)"></ion-icon>
+            </div>
+            <div class="pergunta1">
+                <div>
+                    <input type="text" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
+                    <input type="text" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
+                </div>
+                <div>
+                    <label>Resposta correta</label>
+                    <input type="text" name="respostaCorreta" id="respostaCorreta" placeholder="Resposta correta">
+                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem">
+                </div>
+                <div>
+                    <label>Respostas incorretas</label>
+                    <input type="text" name="respostaIncorreta1" id="respostaIncorreta1" placeholder="Resposta incorreta 1">
+                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 1">
+                </div>
+                <div>
+                    <input type="text" name="respostaIncorreta2" id="respostaIncorreta2" placeholder="Resposta incorreta 2">
+                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 2">
+                </div>
+                <div>
+                    <input type="text" name="respostaIncorreta3" id="respostaIncorreta3" placeholder="Resposta incorreta 3">
+                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 3">
+                </div>
+            </div>
+            
+        </form>
+    </div>
+    `
+    for (let i=1; i<numberOfQuestions; i++) {
+        campos.innerHTML+=`
+        <div class="flex">
+        <form action="" method="post" class="selecaoPerguntas">
+            <div class="flex">
+                <label>Pergunta ${i+1}</label>
+                <ion-icon name="paper" onclick="expandir(this)"></ion-icon>
+            </div>
+            <div class="pergunta${i+1} esconde">
+                <div>
+                    <input type="text" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
+                    <input type="text" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
+                </div>
+                <div>
+                    <label>Resposta correta</label>
+                    <input type="text" name="respostaCorreta" id="respostaCorreta" placeholder="Resposta correta">
+                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem">
+                </div>
+                <div>
+                    <label>Respostas incorretas</label>
+                    <input type="text" name="respostaIncorreta1" id="respostaIncorreta1" placeholder="Resposta incorreta 1">
+                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 1">
+                </div>
+                <div>
+                    <input type="text" name="respostaIncorreta2" id="respostaIncorreta2" placeholder="Resposta incorreta 2">
+                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 2">
+                </div>
+                <div>
+                    <input type="text" name="respostaIncorreta3" id="respostaIncorreta3" placeholder="Resposta incorreta 3">
+                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 3">
+                </div>
+            </div>
+        </form>
+
+    </div>
+    `
+    }
+    campos.innerHTML+=`
+    <div class="flex">
+    <button class="btn-form2" type="submit" onclick="criarQuizzToPage3()">
+        Prosseguir pra criar níveis
+    </button>
+</div>
+    `
+
     document.querySelector(".cria-quizz-page1").classList.add("esconde");
     document.querySelector(".cria-quizz-page2").classList.remove("esconde");
-
 }
 
 function criarQuizzToPage3() {
@@ -249,6 +373,14 @@ function restart() {
     let id = document.querySelector(".idRestart").innerHTML;
     let promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${id}`);
     promise.then(trocaQuizz);
+}
+
+function expandir(el){
+    let ex = document.querySelector(".expandido");
+    ex.classList.remove("expandido");
+    ex.querySelector("div").classList.remove("esconde");
+    el.parentNode.parentNode.classList.add("expandido");
+    el.parentNode.nextElementSibling.classList.remove("esconde");
 }
 
 function teste(id) {
