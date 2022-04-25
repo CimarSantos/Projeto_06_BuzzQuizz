@@ -17,6 +17,8 @@ let newQuizz= {
 		}
 	]
 }
+//localStorage.setItem("ids", arrayDeIds);
+//getUserQuizzes();
 getQuizzes();
 function exibirQuizz(el) {
     let id = el.querySelector("ul").innerHTML;
@@ -96,6 +98,53 @@ function getQuizzes() {
 }
 
 function loadQuizzes(info) {
+    let tela1=document.querySelector(".screen1");
+    if (localStorage.getItem("ids")===null) {
+        tela1.innerHTML=`
+    <div class="flex ">
+        <section class="no-quizz-box">
+            <p>Você não tem nenhum <br> quizz ainda :( </p>
+            <button onclick="criarQuizz()">
+                Criar Quizz
+            </button>
+        </section>
+    </div>`
+    } else {
+        tela1.innerHTML=`
+    <section class="seus-quizzes">
+        <div class="title-seus-quizz">
+            <h2>Seus Quizzes</h2>
+            <ion-icon name="add-circle" onclick="criarQuizz()"></ion-icon>
+        </div>
+        <section class="area-quizzes flex wrap">
+
+            <div class="box-quizz flex" onclick="exibirQuizz()">
+                <div class="title-quizz">
+                    <h3>Título Quizz</h3>
+                </div>
+            </div>
+
+            <div class="box-quizz flex" onclick="exibirQuizz()">
+                <div class="title-quizz">
+                    <h3>Título Quizz</h3>
+                </div>
+            </div>
+
+            <div class="box-quizz flex">
+                <div class="title-quizz">
+                    <h3>Título Quizz</h3>
+                </div>
+            </div>
+        </section>
+    </section>`
+    }
+    tela1.innerHTML+=`
+    <section class="todos-os-quizzes">
+        <h2>Todos os Quizzes</h2>
+        <section class="area-quizzes flex wrap">
+        </section>
+    </section>
+    `;
     let quizzes = document.querySelector(".todos-os-quizzes .area-quizzes");
     quizzes.innerHTML = '';
     for (let i = 0; i < info.data.length; i++) {
@@ -110,6 +159,7 @@ function loadQuizzes(info) {
             </div>
         </div>`
     }
+    scrollToBottom(tela1, 'start');
 }
 
 function backHome() {
