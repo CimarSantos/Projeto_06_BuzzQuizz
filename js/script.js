@@ -18,7 +18,6 @@ let newQuizz= {
 	]
 }
 //localStorage.setItem("ids", arrayDeIds);
-//getUserQuizzes();
 getQuizzes();
 function exibirQuizz(el) {
     let id = el.querySelector("ul").innerHTML;
