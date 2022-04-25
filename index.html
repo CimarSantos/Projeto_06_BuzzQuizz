@@ -23,7 +23,7 @@
         <h1>BuzzQuizz</h1>
     </header>
 
-    <main class="screen1 ">
+    <main class="screen1 esconde">
         <div class="flex ">
 
             <section class="no-quizz-box">
@@ -119,32 +119,32 @@
         </div>
     </section>
 
-    <section class="cria-quizz-page2 esconde">
+    <section class="cria-quizz-page2">
         <h2 class="page-title flex">Crie suas perguntas</h2>
         <div class="flex">
             <form action="" method="post">
                 <div>
                     <label>Pergunta 1</label>
-                    <input type="text" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
-                    <input type="text" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
+                    <input type="text" onChange="perguntasQuizz()" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
+                    <input type="text" onChange="perguntasQuizz()" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
                 </div>
                 <div>
                     <label>Resposta correta</label>
-                    <input type="text" name="respostaCorreta" id="respostaCorreta" placeholder="Resposta correta">
-                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem">
+                    <input type="text" onChange="perguntasQuizz()" name="respostaCorreta" id="respostaCorreta" placeholder="Resposta correta">
+                    <input type="url" onChange="perguntasQuizz()" name="urlImagem" id="urlImagem" placeholder="URL da imagem">
                 </div>
                 <div>
                     <label>Respostas incorretas</label>
-                    <input type="text" name="respostaIncorreta1" id="respostaIncorreta1" placeholder="Resposta incorreta 1">
-                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 1">
+                    <input type="text" onChange="perguntasQuizz()" name="respostaIncorreta1" id="respostaIncorreta1" placeholder="Resposta incorreta 1">
+                    <input type="url" onChange="perguntasQuizz()" name="urlImagem" id="urlImagem" placeholder="URL da imagem 1">
                 </div>
                 <div>
-                    <input type="text" name="respostaIncorreta2" id="respostaIncorreta2" placeholder="Resposta incorreta 2">
-                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 2">
+                    <input type="text" onChange="perguntasQuizz()" name="respostaIncorreta2" id="respostaIncorreta2" placeholder="Resposta incorreta 2">
+                    <input type="url" onChange="perguntasQuizz()" name="urlImagem" id="urlImagem" placeholder="URL da imagem 2">
                 </div>
                 <div>
-                    <input type="text" name="respostaIncorreta3" id="respostaIncorreta3" placeholder="Resposta incorreta 3">
-                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 3">
+                    <input type="text" onChange="perguntasQuizz()" name="respostaIncorreta3" id="respostaIncorreta3" placeholder="Resposta incorreta 3">
+                    <input type="url" onChange="perguntasQuizz()" name="urlImagem" id="urlImagem" placeholder="URL da imagem 3">
                 </div>
             </form>
         </div>
@@ -219,7 +219,7 @@
 
         </div>
         <div class="flex">
-            <button class="btn-form2" type="submit" onclick="criarQuizzToPage3()">
+            <button class="btn-form2" type="submit" onclick="criarQuizzToPage3()" disabled>
                 Prosseguir pra criar níveis
             </button>
         </div>
@@ -269,7 +269,7 @@
 
         </div>
         <div class="flex">
-            <button class="btn-form3" type="submit" onclick="criarQuizzToPage4()">
+            <button class="btn-form3" type="submit" onclick="criarQuizzToPage4()" disabled>
                 Finalizar quizz
             </button>
         </div>

@@ -10,6 +10,13 @@
     background-color: lightcoral;
 }
 
+button:disabled,
+button:disabled:hover {
+    background-color: gray;
+    color: white;
+    cursor: default;
+}
+
 .wrap {
     flex-wrap: wrap;
 }

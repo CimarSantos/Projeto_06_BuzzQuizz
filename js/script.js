@@ -202,7 +202,7 @@ function infoBasicasQuizz(tituloQuizz, urlImageQuizz, qtdPerguntas, qtdNiveis) {
         urlImageQuizz = document.querySelector("#urlImagemQuizz").value;
         result = regex.test(urlImageQuizz);
 
-        if (result !== true || result === '') {
+        if (result !== true) {
             alert("Digite corretamente a URL da imagem do seu quizz");
             document.querySelector("#urlImagemQuizz").classList.add("inputError");
         } else {
@@ -244,6 +244,81 @@ function infoBasicasQuizz(tituloQuizz, urlImageQuizz, qtdPerguntas, qtdNiveis) {
         document.querySelector(".btn-form1").removeAttribute("disabled");
     }
 }
+
+function perguntasQuizz(textoPergunta, corFundo, respostaCorreta, urlImagemResposta, respostaIncorreta1) {
+    textoPergunta = document.querySelector("#textoPergunta").value;
+
+    if (textoPergunta.length < 20) {
+        alert("O texto da pergunta deve ter pelo menos 20 caracteres");
+        document.querySelector("#textoPergunta").classList.add("inputError");
+        document.querySelector("#textoPergunta").value = '';
+    } else {
+        document.querySelector("#textoPergunta").classList.remove("inputError");
+    }
+
+    let result;
+    document.querySelector("#corFundoPergunta").addEventListener("change", function() {
+
+        let regex = XRegExp("^#(?:[0-9a-fA-F]{3}){1,2}$");
+        corFundo = document.querySelector("#corFundoPergunta").value;
+        result = regex.test(corFundo);
+
+        if (result !== true) {
+            alert("A cor de fundo deve ser no formato hexadecimal");
+            document.querySelector("#corFundoPergunta").classList.add("inputError");
+        } else {
+            document.querySelector("#corFundoPergunta").classList.remove("inputError");
+        }
+
+    });
+
+    respostaCorreta = document.querySelector("#respostaCorreta").value;
+
+    if (respostaCorreta.length <= 0) {
+        alert("É obrigatório uma resposta correta e pelo menos uma incorreta!");
+        document.querySelector("#respostaCorreta").classList.add("inputError");
+    } else {
+        document.querySelector("#respostaCorreta").classList.remove("inputError");
+    }
+
+
+    let resultURL;
+    document.querySelector("#urlImagem").addEventListener("change", function() {
+
+        let regex = XRegExp("[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?");
+        urlImagemResposta = document.querySelector("#urlImagem").value;
+        resultURL = regex.test(urlImagem);
+
+        if (resultURL !== true) {
+            alert("Digite corretamente a URL da imagem desta resposta");
+            document.querySelector("#urlImagem").classList.add("inputError");
+        } else {
+            document.querySelector("#urlImagem").classList.remove("inputError");
+        }
+
+    });
+
+    respostaIncorreta1 = document.querySelector("#respostaIncorreta1").value;
+
+    if (respostaIncorreta1.length <= 0) {
+
+        document.querySelector("#respostaIncorreta1").classList.add("inputError");
+    } else {
+        document.querySelector("#respostaIncorreta1").classList.remove("inputError");
+    }
+
+    let URLimagem = document.querySelector("#urlImagem").classList.contains("inputError");
+    let textPergunta = document.querySelector("#textoPergunta").value;
+    let corHex = document.querySelector("#corFundoPergunta").value;
+    let textRespostaCorreta = document.querySelector("#respostaCorreta").value;
+    let textRespostaIncorreta = document.querySelector("#respostaIncorreta1").value;
+    if (tituloQuizz.length >= 20 && URL !== true && numPerguntas >= 3 && numNiveis >= 2) {
+        document.querySelector(".btn-form1").removeAttribute("disabled");
+    }
+
+}
+
+
 
 function restart() {
     let id = document.querySelector(".idRestart").innerHTML;
