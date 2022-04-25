@@ -133,14 +133,13 @@
                 <input type="text" name="descricaoNivel" id="descricaoNivel" placeholder="Descrição do Nível">
             </form>
         </div>
-        <div class="flex">
+        <div class="flex selecaoPerguntas expandido">
             <form action="" method="post">
                 <div class="flex">
                     <label>Nível 2</label>
                     <ion-icon name="paper"></ion-icon>
                 </div>
                 <div class="nivel2 esconde">
-                    <label>Nível 2</label>
                     <input type="text" name="tituloNivel2" id="tituloNivel2" placeholder="Título do nível">
                     <input type="number" name="porcentoAcertoMinimo2" id="porcentoAcertoMinimo2" placeholder="% de acerto mínima">
                     <input type="url" name="urlImagemNivel2" id="urlImagemNivel2" placeholder="URL da imagem do nível">
@@ -175,13 +174,22 @@
 
     <section class="cria-quizz-page4 esconde">
         <h2 class="page-title flex">Seu quizz está pronto!</h2>
-        <div class="flex">
-            <div class="box-quizz-pronto" onclick="exibirQuizz()">
-                <div class=" title-quizz">
-                    <h3>Título Quizz</h3>
+        
+        <div class="final">
+            <div class="caixa-quizz" onclick="exibirQuizz(this)">
+                <ul class="idQuizz esconde">id</ul>
+                <img src="img">
+                <div class="shadow-quizz flex">
+                    <div class="title-quizz">
+                        <h3>nome</h3>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+
+
 
         <div class="flex">
             <button class="btn-form4">
