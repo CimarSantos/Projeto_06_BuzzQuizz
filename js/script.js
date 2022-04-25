@@ -4,6 +4,16 @@ let corretas = 0;
 let quizzInfo;
 let numberOfQuestions=0;
 let numberOfLevels=0;
+let quizzesUsuario;
+if (localStorage.getItem("ids")==null) {
+    localStorage.setItem("ids", "[]");
+    quizzesUsuario=localStorage.getItem("ids");
+    quizzesUsuario= JSON.parse(quizzesUsuario);
+} else {
+    quizzesUsuario=localStorage.getItem("ids");
+    quizzesUsuario= JSON.parse(quizzesUsuario);
+}
+
 let newQuizz= {
     title: "Título do quizz",
 	image: "https://http.cat/411.jpg",
@@ -14,10 +24,15 @@ let newQuizz= {
 			image: "https://http.cat/411.jpg",
 			text: "Descrição do nível 1",
 			minValue: 0
+		},
+        {
+			title: "Título do nível 1",
+			image: "https://http.cat/411.jpg",
+			text: "Descrição do nível 1",
+			minValue: 50
 		}
 	]
 }
-//localStorage.setItem("ids", arrayDeIds);
 getQuizzes();
 function exibirQuizz(el) {
     let id = el.querySelector("ul").innerHTML;
@@ -97,8 +112,9 @@ function getQuizzes() {
 }
 
 function loadQuizzes(info) {
+    let userHaveQuizz=0;
     let tela1=document.querySelector(".screen1");
-    if (localStorage.getItem("ids")===null) {
+    if (localStorage.getItem("ids")==="[]") {
         tela1.innerHTML=`
     <div class="flex ">
         <section class="no-quizz-box">
@@ -109,6 +125,7 @@ function loadQuizzes(info) {
         </section>
     </div>`
     } else {
+        userHaveQuizz=1;
         tela1.innerHTML=`
     <section class="seus-quizzes">
         <div class="title-seus-quizz">
@@ -116,26 +133,21 @@ function loadQuizzes(info) {
             <ion-icon name="add-circle" onclick="criarQuizz()"></ion-icon>
         </div>
         <section class="area-quizzes flex wrap">
-
-            <div class="box-quizz flex" onclick="exibirQuizz()">
-                <div class="title-quizz">
-                    <h3>Título Quizz</h3>
-                </div>
-            </div>
-
-            <div class="box-quizz flex" onclick="exibirQuizz()">
-                <div class="title-quizz">
-                    <h3>Título Quizz</h3>
-                </div>
-            </div>
-
-            <div class="box-quizz flex">
-                <div class="title-quizz">
-                    <h3>Título Quizz</h3>
-                </div>
-            </div>
         </section>
     </section>`
+    for (let j=0; j<quizzesUsuario.length; j++) {
+        document.querySelector(".seus-quizzes").querySelector(".area-quizzes").innerHTML+=
+        `
+    <div class="caixa-quizz" onclick="exibirQuizz(this)">
+        <ul class="idQuizz esconde">${quizzesUsuario[j].id}</ul>
+        <img src="${quizzesUsuario[j].image}">
+        <div class="shadow-quizz flex">
+            <div class="title-quizz">
+                <h3>${quizzesUsuario[j].title}</h3>
+            </div>
+        </div>
+    </div>`
+        }
     }
     tela1.innerHTML+=`
     <section class="todos-os-quizzes">
@@ -158,7 +170,11 @@ function loadQuizzes(info) {
             </div>
         </div>`
     }
-    scrollToBottom(tela1, 'start');
+    if (userHaveQuizz=0){
+        scrollToBottom(tela1, 'start');
+    } else {
+        scrollToBottom(document.querySelector(".seus-quizzes").querySelector(".area-quizzes"), 'end');
+    }
 }
 
 function backHome() {
@@ -224,7 +240,6 @@ function desceNivel() {
 function criarQuizz() {
     document.querySelector(".screen1").classList.add("esconde");
     document.querySelector(".cria-quizz-page1").classList.remove("esconde");
-
 }
 
 function criarQuizzToPage2() {
@@ -244,26 +259,26 @@ function criarQuizzToPage2() {
             </div>
             <div class="pergunta1">
                 <div>
-                    <input type="text" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
-                    <input type="text" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
+                    <input type="text" onchange="perguntasQuizz(this)" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
+                    <input type="text" onchange="perguntasQuizz(this)" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
                 </div>
                 <div class="right">
                     <label>Resposta correta</label>
-                    <input type="text" name="respostaCorreta" id="respostaCorreta" placeholder="Resposta correta">
-                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem">
+                    <input type="text" onchange="perguntasQuizz(this)" name="respostaCorreta" id="respostaCorreta" placeholder="Resposta correta">
+                    <input type="url" onchange="perguntasQuizz(this)" name="urlImagem" id="urlImagem" placeholder="URL da imagem">
                 </div>
                 <div class="wrong1">
                     <label>Respostas incorretas</label>
-                    <input type="text" name="respostaIncorreta1" id="respostaIncorreta1" placeholder="Resposta incorreta 1">
-                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 1">
+                    <input type="text" onchange="perguntasQuizz(this)" name="respostaIncorreta1" id="respostaIncorreta1" placeholder="Resposta incorreta 1">
+                    <input type="url" onchange="perguntasQuizz(this)" name="urlImagem" id="urlImagem" placeholder="URL da imagem 1">
                 </div>
                 <div class="wrong2">
-                    <input type="text" name="respostaIncorreta2" id="respostaIncorreta2" placeholder="Resposta incorreta 2">
-                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 2">
+                    <input type="text" onchange="perguntasQuizz(this)" name="respostaIncorreta2" id="respostaIncorreta2" placeholder="Resposta incorreta 2">
+                    <input type="url" onchange="perguntasQuizz(this)" name="urlImagem" id="urlImagem" placeholder="URL da imagem 2">
                 </div>
                 <div class="wrong3">
-                    <input type="text" name="respostaIncorreta3" id="respostaIncorreta3" placeholder="Resposta incorreta 3">
-                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 3">
+                    <input type="text" onchange="perguntasQuizz(this)" name="respostaIncorreta3" id="respostaIncorreta3" placeholder="Resposta incorreta 3">
+                    <input type="url" onchange="perguntasQuizz(this)" name="urlImagem" id="urlImagem" placeholder="URL da imagem 3">
                 </div>
             </div>
             
@@ -280,26 +295,26 @@ function criarQuizzToPage2() {
             </div>
             <div class="pergunta${i+1}">
                 <div>
-                    <input type="text" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
-                    <input type="text" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
+                    <input type="text" onchange="perguntasQuizz(this)" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
+                    <input type="text" onchange="perguntasQuizz(this)" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
                 </div>
                 <div class="right">
                     <label>Resposta correta</label>
-                    <input type="text" name="respostaCorreta" id="respostaCorreta" placeholder="Resposta correta">
-                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem">
+                    <input type="text" onchange="perguntasQuizz(this)" name="respostaCorreta" id="respostaCorreta" placeholder="Resposta correta">
+                    <input type="url" onchange="perguntasQuizz(this)" name="urlImagem" id="urlImagem" placeholder="URL da imagem">
                 </div>
                 <div class="wrong1">
                     <label>Respostas incorretas</label>
-                    <input type="text" name="respostaIncorreta1" id="respostaIncorreta1" placeholder="Resposta incorreta 1">
-                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 1">
+                    <input type="text" onchange="perguntasQuizz(this)" name="respostaIncorreta1" id="respostaIncorreta1" placeholder="Resposta incorreta 1">
+                    <input type="url" onchange="perguntasQuizz(this)" name="urlImagem" id="urlImagem" placeholder="URL da imagem 1">
                 </div>
                 <div class="wrong2">
-                    <input type="text" name="respostaIncorreta2" id="respostaIncorreta2" placeholder="Resposta incorreta 2">
-                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 2">
+                    <input type="text" onchange="perguntasQuizz(this)" name="respostaIncorreta2" id="respostaIncorreta2" placeholder="Resposta incorreta 2">
+                    <input type="url" onchange="perguntasQuizz(this)" name="urlImagem" id="urlImagem" placeholder="URL da imagem 2">
                 </div>
                 <div class="wrong3">
-                    <input type="text" name="respostaIncorreta3" id="respostaIncorreta3" placeholder="Resposta incorreta 3">
-                    <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 3">
+                    <input type="text" onchange="perguntasQuizz(this)" name="respostaIncorreta3" id="respostaIncorreta3" placeholder="Resposta incorreta 3">
+                    <input type="url" onchange="perguntasQuizz(this)" name="urlImagem" id="urlImagem" placeholder="URL da imagem 3">
                 </div>
             </div>
         </form>
@@ -320,6 +335,14 @@ function criarQuizzToPage2() {
 }
 
 function criarQuizzToPage3() {
+    for (let j=0; j<numberOfQuestions; j++) {
+        let perguntaN=document.querySelector(`.pergunta${j+1}`);
+        if (perguntaN.querySelector("input").value==='' || perguntaN.querySelector(":nth-child(2)").value === '' || perguntaN.querySelector(".right :nth-child(3)").value === ''
+        || perguntaN.querySelector(".wrong1 :nth-child(2)").value==='' || perguntaN.querySelector(".wrong1 :nth-child(3)").value==='') {
+            alert(`A pergunta ${j+1} está incompleta!`)
+            return;
+        }
+    }
     let entradas = document.querySelector(".pergunta1");
     let primeiro = entradas.querySelector(":nth-child(1)")
     let extra;
@@ -329,7 +352,7 @@ function criarQuizzToPage3() {
 		answers: [
 			{
 				text: entradas.querySelector(".right :nth-child(2)").value,
-				image: entradas.querySelector(".right :nth-child(2)").value,
+				image: entradas.querySelector(".right :nth-child(3)").value,
 				isCorrectAnswer: true
 			},
             {
@@ -364,7 +387,7 @@ function criarQuizzToPage3() {
             answers: [
                 {
                     text: entradas.querySelector(".right :nth-child(2)").value,
-                    image: entradas.querySelector(".right :nth-child(2)").value,
+                    image: entradas.querySelector(".right :nth-child(3)").value,
                     isCorrectAnswer: true
                 },
                 {
@@ -403,7 +426,7 @@ function criarQuizzToPage3() {
             </div>
             <div class="nivel1">
                 <input type="text" name="tituloNivel2" id="tituloNivel2" placeholder="Título do nível">
-                <input type="number" name="porcentoAcertoMinimo2" id="porcentoAcertoMinimo2" placeholder="% de acerto mínima">
+                <input type="number" name="porcentoAcertoMinimo2" id="porcentoAcertoMinimo2" disabled placeholder="0 (% de acerto mínima) *obrigatório">
                 <input type="url" name="urlImagemNivel2" id="urlImagemNivel2" placeholder="URL da imagem do nível">
                 <input type="text" name="descricaoNivel2" id="descricaoNivel2" placeholder="Descrição do Nível">
             </div>
@@ -438,6 +461,19 @@ function criarQuizzToPage3() {
 }
 
 function criarQuizzToPage4() {
+
+    document.querySelector(`.nivel1`).querySelector(":nth-child(2)").value=0;
+
+    for (let j=0; j<numberOfLevels; j++) {
+        let nivelN=document.querySelector(`.nivel${j+1}`);
+        if (nivelN.querySelector(":nth-child(1)").value==='' || nivelN.querySelector(":nth-child(2)").value==='' || 
+            nivelN.querySelector(":nth-child(3)").value==='' || nivelN.querySelector(":nth-child(4)").value==='') {
+            alert(`O nível ${j+1} está incompleto!`)
+            return;
+        }
+    }
+    let promessa = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", newQuizz);
+    promessa.then(quizUser);
     let pag4=document.querySelector(".cria-quizz-page4")
     pag4.querySelector(".title-quizz").querySelector("h3").innerHTML = newQuizz.title;
     pag4.querySelector(".caixa-quizz").querySelector("img").setAttribute('src', newQuizz.image);
@@ -445,7 +481,22 @@ function criarQuizzToPage4() {
     pag4.classList.remove("esconde");
     document.querySelector(".cria-quizz-page3").classList.add("esconde");
 }
-
+function quizUser(info) {
+    let pag4=document.querySelector(".cria-quizz-page4");
+    pag4.querySelector(".idQuizz").innerHTML=info.data.id;
+    pag4.querySelector(".btn-form4").setAttribute("onclick", `loadById(${info.data.id})`);
+    let novoQuizz=
+    {   
+        id: info.data.id,
+        key: info.data.key,
+        title: info.data.title,
+        image: info.data.image
+    };
+    quizzesUsuario.push(novoQuizz);
+    quizzesUsuario=JSON.stringify(quizzesUsuario);
+    localStorage.setItem("ids", quizzesUsuario);
+    quizzesUsuario = JSON.parse(quizzesUsuario);
+}
 function scrollToBottom(el, local) {
     el.scrollIntoView({ block: local, behavior: 'smooth' });
 }
@@ -464,7 +515,6 @@ function infoBasicasQuizz(tituloQuizz, urlImageQuizz, qtdPerguntas, qtdNiveis) {
 
     let result;
     document.querySelector("#urlImagemQuizz").addEventListener("change", function() {
-
         let regex = XRegExp("[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?");
         urlImageQuizz = document.querySelector("#urlImagemQuizz").value;
         result = regex.test(urlImageQuizz);
@@ -512,75 +562,66 @@ function infoBasicasQuizz(tituloQuizz, urlImageQuizz, qtdPerguntas, qtdNiveis) {
     }
 }
 
-function perguntasQuizz(textoPergunta, corFundo, respostaCorreta, urlImagemResposta, respostaIncorreta1) {
-    textoPergunta = document.querySelector("#textoPergunta").value;
+function perguntasQuizz(el,textoPergunta, corFundo, respostaCorreta, urlImagemResposta, respostaIncorreta1) {
+    el=el.parentNode.parentNode;
+    textoPergunta = el.querySelector("#textoPergunta").value;
 
     if (textoPergunta.length < 20) {
         alert("O texto da pergunta deve ter pelo menos 20 caracteres");
-        document.querySelector("#textoPergunta").classList.add("inputError");
-        document.querySelector("#textoPergunta").value = '';
+        el.querySelector("#textoPergunta").classList.add("inputError");
+        el.querySelector("#textoPergunta").value = '';
     } else {
-        document.querySelector("#textoPergunta").classList.remove("inputError");
+        el.querySelector("#textoPergunta").classList.remove("inputError");
     }
 
     let result;
-    document.querySelector("#corFundoPergunta").addEventListener("change", function() {
+    el.querySelector("#corFundoPergunta").addEventListener("change", function() {
 
         let regex = XRegExp("^#(?:[0-9a-fA-F]{3}){1,2}$");
-        corFundo = document.querySelector("#corFundoPergunta").value;
+        corFundo = el.querySelector("#corFundoPergunta").value;
         result = regex.test(corFundo);
 
         if (result !== true) {
             alert("A cor de fundo deve ser no formato hexadecimal");
-            document.querySelector("#corFundoPergunta").classList.add("inputError");
+            el.querySelector("#corFundoPergunta").classList.add("inputError");
         } else {
-            document.querySelector("#corFundoPergunta").classList.remove("inputError");
+            el.querySelector("#corFundoPergunta").classList.remove("inputError");
         }
 
     });
 
-    respostaCorreta = document.querySelector("#respostaCorreta").value;
+    respostaCorreta = el.querySelector("#respostaCorreta").value;
 
     if (respostaCorreta.length <= 0) {
         alert("É obrigatório uma resposta correta e pelo menos uma incorreta!");
-        document.querySelector("#respostaCorreta").classList.add("inputError");
+        el.querySelector("#respostaCorreta").classList.add("inputError");
     } else {
-        document.querySelector("#respostaCorreta").classList.remove("inputError");
+        el.querySelector("#respostaCorreta").classList.remove("inputError");
     }
 
 
     let resultURL;
-    document.querySelector("#urlImagem").addEventListener("change", function() {
-
+    el.querySelector("#urlImagem").addEventListener("change", function() {
         let regex = XRegExp("[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?");
-        urlImagemResposta = document.querySelector("#urlImagem").value;
-        resultURL = regex.test(urlImagem);
+        urlImagemResposta = el.querySelector("#urlImagem").value;
+        resultURL = regex.test(urlImagemResposta);
 
         if (resultURL !== true) {
             alert("Digite corretamente a URL da imagem desta resposta");
-            document.querySelector("#urlImagem").classList.add("inputError");
+            el.querySelector("#urlImagem").classList.add("inputError");
         } else {
-            document.querySelector("#urlImagem").classList.remove("inputError");
+            el.querySelector("#urlImagem").classList.remove("inputError");
         }
 
     });
 
-    respostaIncorreta1 = document.querySelector("#respostaIncorreta1").value;
+    respostaIncorreta1 = el.querySelector("#respostaIncorreta1").value;
 
     if (respostaIncorreta1.length <= 0) {
 
-        document.querySelector("#respostaIncorreta1").classList.add("inputError");
+        el.querySelector("#respostaIncorreta1").classList.add("inputError");
     } else {
-        document.querySelector("#respostaIncorreta1").classList.remove("inputError");
-    }
-
-    let URLimagem = document.querySelector("#urlImagem").classList.contains("inputError");
-    let textPergunta = document.querySelector("#textoPergunta").value;
-    let corHex = document.querySelector("#corFundoPergunta").value;
-    let textRespostaCorreta = document.querySelector("#respostaCorreta").value;
-    let textRespostaIncorreta = document.querySelector("#respostaIncorreta1").value;
-    if (tituloQuizz.length >= 20 && URL !== true && numPerguntas >= 3 && numNiveis >= 2) {
-        document.querySelector(".btn-form1").removeAttribute("disabled");
+        el.querySelector("#respostaIncorreta1").classList.remove("inputError");
     }
 
 }
@@ -603,7 +644,8 @@ function expandirNivel(el){
     el.parentNode.parentNode.classList.add("expandido");
 }
 
-function teste(id) {
+function loadById(id) {
     let promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${id}`);
+    document.querySelector(".cria-quizz-page4").classList.add("esconde");
     promise.then(trocaQuizz);
 }
