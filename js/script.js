@@ -34,6 +34,7 @@ let newQuizz= {
 	]
 }
 getQuizzes();
+
 function exibirQuizz(el) {
     let id = el.querySelector("ul").innerHTML;
     let promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${id}`);
@@ -149,7 +150,7 @@ function loadQuizzes(info) {
     </div>`
         }
     }
-    tela1.innerHTML+=`
+    tela1.innerHTML += `
     <section class="todos-os-quizzes">
         <h2>Todos os Quizzes</h2>
         <section class="area-quizzes flex wrap">
@@ -249,7 +250,7 @@ function criarQuizzToPage2() {
     numberOfLevels = document.getElementById("qtdNiveis").value;
 
     let campos = document.querySelector(".cria-quizz-page2");
-    campos.innerHTML= `        
+    campos.innerHTML = `        
     <h2 class="page-title flex">Crie suas perguntas</h2>
     <div class="flex">
         <form action="" method="post" class="expandido selecaoPerguntas">
@@ -285,8 +286,8 @@ function criarQuizzToPage2() {
         </form>
     </div>
     `
-    for (let i=1; i<numberOfQuestions; i++) {
-        campos.innerHTML+=`
+    for (let i = 1; i < numberOfQuestions; i++) {
+        campos.innerHTML += `
         <div class="flex">
         <form action="" method="post" class="selecaoPerguntas">
             <div class="flex">
@@ -322,7 +323,7 @@ function criarQuizzToPage2() {
     </div>
     `
     }
-    campos.innerHTML+=`
+    campos.innerHTML += `
     <div class="flex">
     <button class="btn-form2" type="submit" onclick="criarQuizzToPage3()">
         Prosseguir pra criar níveis
@@ -362,7 +363,7 @@ function criarQuizzToPage3() {
             }
         ]
     }
-    if (entradas.querySelector(".wrong2 :nth-child(1)").value!='') {
+    if (entradas.querySelector(".wrong2 :nth-child(1)").value != '') {
         extra = {
             text: entradas.querySelector(".wrong2 :nth-child(1)").value,
             image: entradas.querySelector(".wrong2 :nth-child(2)").value,
@@ -370,7 +371,7 @@ function criarQuizzToPage3() {
         }
         novaPergunta.answers.push(extra);
     }
-    if (entradas.querySelector(".wrong3 :nth-child(1)").value!='') {
+    if (entradas.querySelector(".wrong3 :nth-child(1)").value != '') {
         extra = {
             text: entradas.querySelector(".wrong3 :nth-child(1)").value,
             image: entradas.querySelector(".wrong3 :nth-child(2)").value,
@@ -379,13 +380,12 @@ function criarQuizzToPage3() {
         novaPergunta.answers.push(extra);
     }
     newQuizz.questions.push(novaPergunta);
-    for (let i=1; i<numberOfQuestions; i++) {
+    for (let i = 1; i < numberOfQuestions; i++) {
         entradas = document.querySelector(`.pergunta${i+1}`);
         novaPergunta = {
             title: entradas.querySelector("input").value,
             color: entradas.querySelector(":nth-child(2)").value,
-            answers: [
-                {
+            answers: [{
                     text: entradas.querySelector(".right :nth-child(2)").value,
                     image: entradas.querySelector(".right :nth-child(3)").value,
                     isCorrectAnswer: true
@@ -397,7 +397,7 @@ function criarQuizzToPage3() {
                 }
             ]
         }
-        if (entradas.querySelector(".wrong2 :nth-child(1)").value!='') {
+        if (entradas.querySelector(".wrong2 :nth-child(1)").value != '') {
             extra = {
                 text: entradas.querySelector(".wrong2 :nth-child(1)").value,
                 image: entradas.querySelector(".wrong2 :nth-child(2)").value,
@@ -405,7 +405,7 @@ function criarQuizzToPage3() {
             }
             novaPergunta.answers.push(extra);
         }
-        if (entradas.querySelector(".wrong3 :nth-child(1)").value!='') {
+        if (entradas.querySelector(".wrong3 :nth-child(1)").value != '') {
             extra = {
                 text: entradas.querySelector(".wrong3 :nth-child(1)").value,
                 image: entradas.querySelector(".wrong3 :nth-child(2)").value,
@@ -416,7 +416,7 @@ function criarQuizzToPage3() {
         newQuizz.questions.push(novaPergunta);
     }
     let pag3 = document.querySelector(".cria-quizz-page3");
-    pag3.innerHTML=`
+    pag3.innerHTML = `
     <h2 class="page-title flex">Agora, decida os níveisa</h2>
     <div class="flex">
         <form action="" method="post" class="selecaoNiveis expandido">
@@ -432,8 +432,8 @@ function criarQuizzToPage3() {
             </div>
         </form>
     </div>`;
-    for (let i=1; i<numberOfLevels; i++) {
-        pag3.innerHTML+= `
+    for (let i = 1; i < numberOfLevels; i++) {
+        pag3.innerHTML += `
         <div class="flex">
             <form action="" method="post" class="selecaoNiveis">
                 <div class="flex">
@@ -450,7 +450,7 @@ function criarQuizzToPage3() {
         </div>
         `;
     }
-    pag3.innerHTML+=`
+    pag3.innerHTML += `
     <div class="flex">
         <button class="btn-form3" type="submit" onclick="criarQuizzToPage4()">
             Finalizar quizz
@@ -626,6 +626,72 @@ function perguntasQuizz(el,textoPergunta, corFundo, respostaCorreta, urlImagemRe
 
 }
 
+function niveisQuizz(tituloNivel, porcentoMinimo, urlImagemNivel, descricaoNivel) {
+
+
+    document.querySelector("#tituloNivel").addEventListener("change", function() {
+
+        tituloNivel = document.querySelector("#tituloNivel").value;
+
+        if (tituloNivel.length < 10) {
+            alert("O titulo do nível deve ter no mínimo 10 letras!");
+            document.querySelector("#tituloNivel").classList.add("inputError");
+        } else {
+            document.querySelector("#tituloNivel").classList.remove("inputError");
+        }
+    });
+
+    document.querySelector("#porcentoAcertoMinimo").addEventListener("change", function() {
+
+        porcentoMinimo = document.querySelector("#porcentoAcertoMinimo").value;
+
+        if (porcentoMinimo <= 0 || porcentoMinimo > 100) {
+            alert("A porcentagem de acerto mínima deve ser um número entre 0 e 100");
+            document.querySelector("#porcentoAcertoMinimo").classList.add("inputError");
+        } else {
+            document.querySelector("#porcentoAcertoMinimo").classList.remove("inputError");
+        }
+
+    });
+
+    let resultURLNivel;
+    document.querySelector("#urlImagemNivel").addEventListener("change", function() {
+
+        let regex = XRegExp("[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?");
+        urlImagemNivel = document.querySelector("#urlImagemNivel").value;
+        resultURLNivel = regex.test(urlImagemNivel);
+
+        if (resultURLNivel !== true) {
+            alert("Digite corretamente a URL da imagem deste nível");
+            document.querySelector("#urlImagemNivel").classList.add("inputError");
+        } else {
+            document.querySelector("#urlImagemNivel").classList.remove("inputError");
+        }
+    });
+
+    document.querySelector("#descricaoNivel").addEventListener("change", function() {
+
+
+        descricaoNivel = document.querySelector("#descricaoNivel").value;
+
+        if (descricaoNivel.length < 30) {
+            alert("A descrição deve ter no mínimo 30 letras!");
+            document.querySelector("#descricaoNivel").classList.add("inputError");
+        } else {
+            document.querySelector("#descricaoNivel").classList.remove("inputError");
+        }
+    });
+
+    let urlImagemDoNivel = document.querySelector("#urlImagem").classList.contains("inputError");
+    let textTitulo = document.querySelector("#tituloNivel").value;
+    let porcentagemNivel = document.querySelector("#porcentoAcertoMinimo").value;
+    let textDescricao = document.querySelector("#descricaoNivel").value;
+
+    if (textTitulo.length >= 10 && urlImagemDoNivel !== true && (porcentagemNivel > 0 || porcentagemNivel < 100) && textDescricao.length > 30) {
+        document.querySelector(".btn-form3").removeAttribute("disabled");
+    }
+
+}
 
 
 function restart() {
@@ -634,12 +700,12 @@ function restart() {
     promise.then(trocaQuizz);
 }
 
-function expandirQuizz(el){
+function expandirQuizz(el) {
     document.querySelector(".expandido").classList.remove("expandido");
     el.parentNode.parentNode.classList.add("expandido");
 }
 
-function expandirNivel(el){
+function expandirNivel(el) {
     document.querySelector(".selecaoNiveis.expandido").classList.remove("expandido");
     el.parentNode.parentNode.classList.add("expandido");
 }

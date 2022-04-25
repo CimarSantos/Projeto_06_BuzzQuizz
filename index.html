@@ -26,27 +26,31 @@
         <main class="screen1 ">
         </main>
 
-        <main class="screen2 esconde">
-        </main>
+        <!-- <main class="screen1 "> -->
 
-        <section class="cria-quizz-page1 esconde">
-            <h2 class="page-title flex">Comece pelo começo</h2>
-            <div class="flex">
-                <form action="" method="post">
-                    <input type="text" onChange="infoBasicasQuizz()" data-ls-module="charCounter" minlength="20" maxlength="65" name="tituloQuizz" id="tituloQuizz" placeholder="Título do seu quizz">
-                    <input type="url" onChange="infoBasicasQuizz()" name="urlImagemQuizz" id="urlImagemQuizz" placeholder="Url da imagem do seu quizz" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?"
-                        required>
-                    <input type="number" onChange="infoBasicasQuizz()" name="qtdPerguntas" id="qtdPerguntas" placeholder="Quantidade de perguntas do quizz">
-                    <input type="number" onChange="infoBasicasQuizz()" name="qtdNiveis" id="qtdNiveis" placeholder="Quantidade de níveis do quizz">
-                </form>
 
-            </div>
-            <div class="flex">
-                <button class="btn-form1" type="submit" onclick="criarQuizzToPage2()" disabled>
+    </main>
+    <main class="screen2">
+    </main>
+
+    <section class="cria-quizz-page1 esconde">
+        <h2 class="page-title flex">Comece pelo começo</h2>
+        <div class="flex">
+            <form action="" method="post">
+                <input type="text" onChange="infoBasicasQuizz()" data-ls-module="charCounter" minlength="20" maxlength="65" name="tituloQuizz" id="tituloQuizz" placeholder="Título do seu quizz">
+                <input type="url" onChange="infoBasicasQuizz()" name="urlImagemQuizz" id="urlImagemQuizz" placeholder="Url da imagem do seu quizz" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?"
+                    required>
+                <input type="number" onChange="infoBasicasQuizz()" name="qtdPerguntas" id="qtdPerguntas" placeholder="Quantidade de perguntas do quizz">
+                <input type="number" onChange="infoBasicasQuizz()" name="qtdNiveis" id="qtdNiveis" placeholder="Quantidade de níveis do quizz">
+            </form>
+
+        </div>
+        <div class="flex">
+            <button class="btn-form1" type="submit" onclick="criarQuizzToPage2()" disabled>
                 Prosseguir pra criar perguntas
             </button>
-            </div>
-        </section>
+        </div>
+    </section>
 
         <section class="cria-quizz-page2 esconde">
         </section>
@@ -55,17 +59,16 @@
         </section>
 
 
-        <section class="cria-quizz-page4 esconde">
-            <h2 class="page-title flex">Seu quizz está pronto!</h2>
+    <section class="cria-quizz-page4 esconde">
+        <h2 class="page-title flex">Seu quizz está pronto!</h2>
 
-            <div class="final">
-                <div class="caixa-quizz" onclick="exibirQuizz(this)">
-                    <ul class="idQuizz esconde">id</ul>
-                    <img src="img">
-                    <div class="shadow-quizz flex">
-                        <div class="title-quizz">
-                            <h3>nome</h3>
-                        </div>
+        <div class="final">
+            <div class="caixa-quizz" onclick="exibirQuizz(this)">
+                <ul class="idQuizz esconde">id</ul>
+                <img src="img">
+                <div class="shadow-quizz flex">
+                    <div class="title-quizz">
+                        <h3>nome</h3>
                     </div>
                 </div>
             </div>
@@ -73,16 +76,16 @@
                 <button class="btn-form4" onclick="loadById()">
                     Acessar quizz
                 </button>
-            </div>
-            <div class="flex voltarHome">
-                <p onclick="backHome()">Voltar pra home</p>
-            </div>
+        </div>
+        <div class="flex voltarHome">
+            <p onclick="backHome()">Voltar pra home</p>
+        </div>
 
-        </section>
+    </section>
 
-        <script src="http://xregexp.com/v/3.0.0/xregexp-all-min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="/js/script.js"></script>
+    <script src="http://xregexp.com/v/3.0.0/xregexp-all-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>
