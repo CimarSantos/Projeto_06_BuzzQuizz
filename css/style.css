@@ -427,7 +427,8 @@ form div ion-icon {
 }
 .final {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media (min-width: 320px) and (max-width: 768px) {

@@ -18,20 +18,7 @@ let newQuizz= {
     title: "Título do quizz",
 	image: "https://http.cat/411.jpg",
 	questions: [],
-    levels: [
-		{
-			title: "Título do nível 1",
-			image: "https://http.cat/411.jpg",
-			text: "Descrição do nível 1",
-			minValue: 0
-		},
-        {
-			title: "Título do nível 1",
-			image: "https://http.cat/411.jpg",
-			text: "Descrição do nível 1",
-			minValue: 50
-		}
-	]
+    levels: []
 }
 getQuizzes();
 
@@ -116,6 +103,7 @@ function loadQuizzes(info) {
     let userHaveQuizz=0;
     let tela1=document.querySelector(".screen1");
     if (localStorage.getItem("ids")==="[]") {
+        userHaveQuizz=0;
         tela1.innerHTML=`
     <div class="flex ">
         <section class="no-quizz-box">
@@ -171,7 +159,7 @@ function loadQuizzes(info) {
             </div>
         </div>`
     }
-    if (userHaveQuizz=0){
+    if (userHaveQuizz==0){
         scrollToBottom(tela1, 'start');
     } else {
         scrollToBottom(document.querySelector(".seus-quizzes").querySelector(".area-quizzes"), 'end');
@@ -425,10 +413,10 @@ function criarQuizzToPage3() {
                 <ion-icon name="paper" onclick="expandirNivel(this)"></ion-icon>
             </div>
             <div class="nivel1">
-                <input type="text" name="tituloNivel2" id="tituloNivel2" placeholder="Título do nível">
-                <input type="number" name="porcentoAcertoMinimo2" id="porcentoAcertoMinimo2" disabled placeholder="0 (% de acerto mínima) *obrigatório">
-                <input type="url" name="urlImagemNivel2" id="urlImagemNivel2" placeholder="URL da imagem do nível">
-                <input type="text" name="descricaoNivel2" id="descricaoNivel2" placeholder="Descrição do Nível">
+                <input type="text" onclick="niveisQuizz(this)" name="tituloNivel" id="tituloNivel" placeholder="Título do nível">
+                <input type="number" onclick="niveisQuizz(this)" name="porcentoAcertoMinimo" id="porcentoAcertoMinimo" disabled placeholder="0 (% de acerto mínima) *obrigatório">
+                <input type="url" onclick="niveisQuizz(this)" name="urlImagemNivel" id="urlImagemNivel" placeholder="URL da imagem do nível">
+                <input type="text" onclick="niveisQuizz(this)" name="descricaoNivel" id="descricaoNivel" placeholder="Descrição do Nível">
             </div>
         </form>
     </div>`;
@@ -441,10 +429,10 @@ function criarQuizzToPage3() {
                     <ion-icon name="paper" onclick="expandirNivel(this)"></ion-icon>
                 </div>
                 <div class="nivel${i+1}">
-                    <input type="text" name="tituloNivel2" id="tituloNivel2" placeholder="Título do nível">
-                    <input type="number" name="porcentoAcertoMinimo2" id="porcentoAcertoMinimo2" placeholder="% de acerto mínima">
-                    <input type="url" name="urlImagemNivel2" id="urlImagemNivel2" placeholder="URL da imagem do nível">
-                    <input type="text" name="descricaoNivel2" id="descricaoNivel2" placeholder="Descrição do Nível">
+                    <input type="text" onclick="niveisQuizz(this)" name="tituloNivel" id="tituloNivel" placeholder="Título do nível">
+                    <input type="number" onclick="niveisQuizz(this)" name="porcentoAcertoMinimo" id="porcentoAcertoMinimo" placeholder="% de acerto mínima">
+                    <input type="url" onclick="niveisQuizz(this)" name="urlImagemNivel" id="urlImagemNivel" placeholder="URL da imagem do nível">
+                    <input type="text" onclick="niveisQuizz(this)" name="descricaoNivel" id="descricaoNivel" placeholder="Descrição do Nível">
                 </div>
             </form>
         </div>
@@ -472,6 +460,21 @@ function criarQuizzToPage4() {
             return;
         }
     }
+    let novoNivel=
+    {
+        title: "Título do nível 1",
+        image: "https://http.cat/411.jpg",
+        text: "Descrição do nível 1",
+        minValue: 50
+    };
+    for (let j=0; j<numberOfLevels; j++){
+        let nivelN=document.querySelector(`.nivel${j+1}`);
+        novoNivel.title = nivelN.querySelector(":nth-child(1)").value;
+        novoNivel.image = nivelN.querySelector(":nth-child(3)").value;
+        novoNivel.text = nivelN.querySelector(":nth-child(4)").value;
+        novoNivel.minValue = nivelN.querySelector(":nth-child(2)").value;
+        newQuizz.levels.push(novoNivel);
+    }
     let promessa = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", newQuizz);
     promessa.then(quizUser);
     let pag4=document.querySelector(".cria-quizz-page4")
@@ -496,6 +499,12 @@ function quizUser(info) {
     quizzesUsuario=JSON.stringify(quizzesUsuario);
     localStorage.setItem("ids", quizzesUsuario);
     quizzesUsuario = JSON.parse(quizzesUsuario);
+    newQuizz= {
+        title: "Título do quizz",
+        image: "https://http.cat/411.jpg",
+        questions: [],
+        levels: []
+    }
 }
 function scrollToBottom(el, local) {
     el.scrollIntoView({ block: local, behavior: 'smooth' });
@@ -562,7 +571,7 @@ function infoBasicasQuizz(tituloQuizz, urlImageQuizz, qtdPerguntas, qtdNiveis) {
     }
 }
 
-function perguntasQuizz(el,textoPergunta, corFundo, respostaCorreta, urlImagemResposta, respostaIncorreta1) {
+function perguntasQuizz(el, textoPergunta, corFundo, respostaCorreta, urlImagemResposta, respostaIncorreta1) {
     el=el.parentNode.parentNode;
     textoPergunta = el.querySelector("#textoPergunta").value;
 
@@ -626,69 +635,69 @@ function perguntasQuizz(el,textoPergunta, corFundo, respostaCorreta, urlImagemRe
 
 }
 
-function niveisQuizz(tituloNivel, porcentoMinimo, urlImagemNivel, descricaoNivel) {
+function niveisQuizz(el, tituloNivel, porcentoMinimo, urlImagemNivel, descricaoNivel) {
 
+    el=el.parentNode;
+    el.querySelector("#tituloNivel").addEventListener("change", function() {
 
-    document.querySelector("#tituloNivel").addEventListener("change", function() {
-
-        tituloNivel = document.querySelector("#tituloNivel").value;
+        tituloNivel = el.querySelector("#tituloNivel").value;
 
         if (tituloNivel.length < 10) {
             alert("O titulo do nível deve ter no mínimo 10 letras!");
-            document.querySelector("#tituloNivel").classList.add("inputError");
+            el.querySelector("#tituloNivel").classList.add("inputError");
         } else {
-            document.querySelector("#tituloNivel").classList.remove("inputError");
+            el.querySelector("#tituloNivel").classList.remove("inputError");
         }
     });
 
-    document.querySelector("#porcentoAcertoMinimo").addEventListener("change", function() {
+    el.querySelector("#porcentoAcertoMinimo").addEventListener("change", function() {
 
-        porcentoMinimo = document.querySelector("#porcentoAcertoMinimo").value;
+        porcentoMinimo = el.querySelector("#porcentoAcertoMinimo").value;
 
         if (porcentoMinimo <= 0 || porcentoMinimo > 100) {
             alert("A porcentagem de acerto mínima deve ser um número entre 0 e 100");
-            document.querySelector("#porcentoAcertoMinimo").classList.add("inputError");
+            el.querySelector("#porcentoAcertoMinimo").classList.add("inputError");
         } else {
-            document.querySelector("#porcentoAcertoMinimo").classList.remove("inputError");
+            el.querySelector("#porcentoAcertoMinimo").classList.remove("inputError");
         }
 
     });
 
     let resultURLNivel;
-    document.querySelector("#urlImagemNivel").addEventListener("change", function() {
+    el.querySelector("#urlImagemNivel").addEventListener("change", function() {
 
         let regex = XRegExp("[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?");
-        urlImagemNivel = document.querySelector("#urlImagemNivel").value;
+        urlImagemNivel = el.querySelector("#urlImagemNivel").value;
         resultURLNivel = regex.test(urlImagemNivel);
 
         if (resultURLNivel !== true) {
             alert("Digite corretamente a URL da imagem deste nível");
-            document.querySelector("#urlImagemNivel").classList.add("inputError");
+            el.querySelector("#urlImagemNivel").classList.add("inputError");
         } else {
-            document.querySelector("#urlImagemNivel").classList.remove("inputError");
+            el.querySelector("#urlImagemNivel").classList.remove("inputError");
         }
     });
 
-    document.querySelector("#descricaoNivel").addEventListener("change", function() {
+    el.querySelector("#descricaoNivel").addEventListener("change", function() {
 
 
-        descricaoNivel = document.querySelector("#descricaoNivel").value;
+        descricaoNivel = el.querySelector("#descricaoNivel").value;
 
         if (descricaoNivel.length < 30) {
             alert("A descrição deve ter no mínimo 30 letras!");
-            document.querySelector("#descricaoNivel").classList.add("inputError");
+            el.querySelector("#descricaoNivel").classList.add("inputError");
         } else {
-            document.querySelector("#descricaoNivel").classList.remove("inputError");
+            el.querySelector("#descricaoNivel").classList.remove("inputError");
         }
     });
 
-    let urlImagemDoNivel = document.querySelector("#urlImagem").classList.contains("inputError");
-    let textTitulo = document.querySelector("#tituloNivel").value;
-    let porcentagemNivel = document.querySelector("#porcentoAcertoMinimo").value;
-    let textDescricao = document.querySelector("#descricaoNivel").value;
+    let urlImagemDoNivel = el.querySelector("#urlImagem").classList.contains("inputError");
+    let textTitulo = el.querySelector("#tituloNivel").value;
+    let porcentagemNivel = el.querySelector("#porcentoAcertoMinimo").value;
+    let textDescricao = el.querySelector("#descricaoNivel").value;
 
     if (textTitulo.length >= 10 && urlImagemDoNivel !== true && (porcentagemNivel > 0 || porcentagemNivel < 100) && textDescricao.length > 30) {
-        document.querySelector(".btn-form3").removeAttribute("disabled");
+        el.querySelector(".btn-form3").removeAttribute("disabled");
     }
 
 }
