@@ -14,8 +14,8 @@
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
 
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -23,69 +23,8 @@
         <h1>BuzzQuizz</h1>
     </header>
 
-    <main class="screen1">
-        <div class="flex ">
-
-            <section class="no-quizz-box">
-
-                <p>Você não tem nenhum <br> quizz ainda :( </p>
-
-                <button onclick="criarQuizz()">
-                    Criar Quizz
-                </button>
-
-            </section>
-        </div>
-
-        <section class="seus-quizzes">
-            <div class="title-seus-quizz">
-                <h2>Seus Quizzes</h2>
-                <ion-icon name="add-circle" onclick="criarQuizz()"></ion-icon>
-            </div>
-            <section class="area-quizzes flex wrap">
-
-                <div class="box-quizz flex" onclick="exibirQuizz()">
-                    <div class="title-quizz">
-                        <h3>Título Quizz</h3>
-                    </div>
-                </div>
-
-                <div class="box-quizz flex" onclick="exibirQuizz()">
-                    <div class="title-quizz">
-                        <h3>Título Quizz</h3>
-                    </div>
-                </div>
-
-                <div class="box-quizz flex">
-                    <div class="title-quizz">
-                        <h3>Título Quizz</h3>
-                    </div>
-                </div>
-            </section>
-        </section>
-
-        <section class="todos-os-quizzes">
-            <h2>Todos os Quizzes</h2>
-            <section class="area-quizzes flex wrap">
-
-                <div class="caixa-quizz">
-                    <img src="/img/como-mostrar-o-fps-no-lol-capa.png">
-                    <div class="shadow-quizz flex">
-                        <div class="title-quizz">
-                            <h3>Título Quizz</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="box-quizz flex">
-                    <div class="title-quizz">
-                        <h3>Título Quizz</h3>
-                    </div>
-                </div>
-
-            </section>
-
-        </section>
+        <main class="screen1 ">
+        </main>
 
         <!-- <main class="screen1 "> -->
 
@@ -113,161 +52,11 @@
         </div>
     </section>
 
-    <section class="cria-quizz-page2 esconde">
-        <h2 class="page-title flex">Crie suas perguntas</h2>
-        <div class="flex">
-            <form action="" method="post">
-                <div>
-                    <label>Pergunta 1</label>
-                    <input type="text" onChange="perguntasQuizz()" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
-                    <input type="text" onChange="perguntasQuizz()" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
-                </div>
-                <div>
-                    <label>Resposta correta</label>
-                    <input type="text" onChange="perguntasQuizz()" name="respostaCorreta" id="respostaCorreta" placeholder="Resposta correta">
-                    <input type="url" onChange="perguntasQuizz()" name="urlImagem" id="urlImagem" placeholder="URL da imagem">
-                </div>
-                <div>
-                    <label>Respostas incorretas</label>
-                    <input type="text" onChange="perguntasQuizz()" name="respostaIncorreta1" id="respostaIncorreta1" placeholder="Resposta incorreta 1">
-                    <input type="url" onChange="perguntasQuizz()" name="urlImagem" id="urlImagem" placeholder="URL da imagem 1">
-                </div>
-                <div>
-                    <input type="text" onChange="perguntasQuizz()" name="respostaIncorreta2" id="respostaIncorreta2" placeholder="Resposta incorreta 2">
-                    <input type="url" onChange="perguntasQuizz()" name="urlImagem" id="urlImagem" placeholder="URL da imagem 2">
-                </div>
-                <div>
-                    <input type="text" onChange="perguntasQuizz()" name="respostaIncorreta3" id="respostaIncorreta3" placeholder="Resposta incorreta 3">
-                    <input type="url" onChange="perguntasQuizz()" name="urlImagem" id="urlImagem" placeholder="URL da imagem 3">
-                </div>
-            </form>
-        </div>
+        <section class="cria-quizz-page2 esconde">
+        </section>
 
-
-        <div class="flex">
-            <form action="" method="post">
-                <div class="flex">
-                    <label>Pergunta 2</label>
-                    <ion-icon name="paper"></ion-icon>
-                </div>
-                <div class="pergunta2 esconde">
-                    <div>
-                        <label>Pergunta 2</label>
-                        <input type="text" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
-                        <input type="text" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
-                    </div>
-                    <div>
-                        <label>Resposta correta</label>
-                        <input type="text" name="respostaCorreta" id="respostaCorreta" placeholder="Resposta correta">
-                        <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem">
-                    </div>
-                    <div>
-                        <label>Respostas incorretas</label>
-                        <input type="text" name="respostaIncorreta1" id="respostaIncorreta1" placeholder="Resposta incorreta 1">
-                        <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 1">
-                    </div>
-                    <div>
-                        <input type="text" name="respostaIncorreta2" id="respostaIncorreta2" placeholder="Resposta incorreta 2">
-                        <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 2">
-                    </div>
-                    <div>
-                        <input type="text" name="respostaIncorreta3" id="respostaIncorreta3" placeholder="Resposta incorreta 3">
-                        <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 3">
-                    </div>
-                </div>
-            </form>
-
-        </div>
-        <div class="flex">
-            <form action="" method="post">
-                <div class="flex">
-                    <label>Pergunta 3</label>
-                    <ion-icon name="paper"></ion-icon>
-                </div>
-                <div class="pergunta3 esconde">
-                    <div>
-                        <label>Pergunta 3</label>
-                        <input type="text" name="textoPergunta" id="textoPergunta" placeholder="Texto da pergunta">
-                        <input type="text" name="corFundoPergunta" id="corFundoPergunta" placeholder="Cor de fundo da pergunta">
-                    </div>
-                    <div>
-                        <label>Resposta correta</label>
-                        <input type="text" name="respostaCorreta" id="respostaCorreta" placeholder="Resposta correta">
-                        <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem">
-                    </div>
-                    <div>
-                        <label>Respostas incorretas</label>
-                        <input type="text" name="respostaIncorreta1" id="respostaIncorreta1" placeholder="Resposta incorreta 1">
-                        <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 1">
-                    </div>
-                    <div>
-                        <input type="text" name="respostaIncorreta2" id="respostaIncorreta2" placeholder="Resposta incorreta 2">
-                        <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 2">
-                    </div>
-                    <div>
-                        <input type="text" name="respostaIncorreta3" id="respostaIncorreta3" placeholder="Resposta incorreta 3">
-                        <input type="url" name="urlImagem" id="urlImagem" placeholder="URL da imagem 3">
-                    </div>
-                </div>
-            </form>
-
-        </div>
-        <div class="flex">
-            <button class="btn-form2" type="submit" onclick="criarQuizzToPage3()" disabled>
-                Prosseguir pra criar níveis
-            </button>
-        </div>
-    </section>
-
-    <section class="cria-quizz-page3 esconde">
-        <h2 class="page-title flex">Agora, decida os níveis</h2>
-        <div class="flex">
-            <form action="" method="post">
-                <label>Nível 1</label>
-                <input type="text" onchange="niveisQuizz()" name="tituloNivel" id="tituloNivel" placeholder="Título do nível">
-                <input type="number" onchange="niveisQuizz()" name="porcentoAcertoMinimo" id="porcentoAcertoMinimo" placeholder="% de acerto mínima">
-                <input type="url" onchange="niveisQuizz()" name="urlImagemNivel" id="urlImagemNivel" placeholder="URL da imagem do nível">
-                <input type="text" onchange="niveisQuizz()" name="descricaoNivel" id="descricaoNivel" placeholder="Descrição do Nível">
-            </form>
-        </div>
-        <div class="flex">
-            <form action="" method="post">
-                <div class="flex">
-                    <label>Nível 2</label>
-                    <ion-icon name="paper"></ion-icon>
-                </div>
-                <div class="nivel2 esconde">
-                    <label>Nível 2</label>
-                    <input type="text" onchange="niveisQuizz()" name="tituloNivel" id="tituloNivel" placeholder="Título do nível">
-                    <input type="number" onchange="niveisQuizz()" name="porcentoAcertoMinimo" id="porcentoAcertoMinimo" placeholder="% de acerto mínima">
-                    <input type="url" onchange="niveisQuizz()" name="urlImagemNivel" id="urlImagemNivel" placeholder="URL da imagem do nível">
-                    <input type="text" onchange="niveisQuizz()" name="descricaoNivel" id="descricaoNivel" placeholder="Descrição do Nível">
-                </div>
-            </form>
-
-        </div>
-        <div class="flex">
-            <form action="" method="post">
-                <div class="flex">
-                    <label>Nível 3</label>
-                    <ion-icon name="paper"></ion-icon>
-                </div>
-                <div class="nivel3 esconde">
-                    <label>Nível 3</label>
-                    <input type="text" onchange="niveisQuizz()" name="tituloNivel" id="tituloNivel" placeholder="Título do nível">
-                    <input type="number" onchange="niveisQuizz()" name="porcentoAcertoMinimo" id="porcentoAcertoMinimo" placeholder="% de acerto mínima">
-                    <input type="url" onchange="niveisQuizz()" name="urlImagemNivel" id="urlImagemNivel" placeholder="URL da imagem do nível">
-                    <input type="text" onchange="niveisQuizz()" name="descricaoNivel" id="descricaoNivel" placeholder="Descrição do Nível">
-                </div>
-            </form>
-
-        </div>
-        <div class="flex">
-            <button class="btn-form3" type="submit" onclick="criarQuizzToPage4()" disabled>
-                Finalizar quizz
-            </button>
-        </div>
-    </section>
+        <section class="cria-quizz-page3 esconde">
+        </section>
 
 
     <section class="cria-quizz-page4 esconde">
@@ -283,11 +72,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="flex">
-            <button class="btn-form4">
+            <div class="flex">
+                <button class="btn-form4" onclick="loadById()">
                     Acessar quizz
                 </button>
+            </div>
         </div>
         <div class="flex voltarHome">
             <p onclick="backHome()">Voltar pra home</p>
