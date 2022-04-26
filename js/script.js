@@ -181,7 +181,7 @@ function scramble() {
 }
 
 function selecionarOpcao(el, bool) {
-    let i = 0;
+    let j;
     let pai = el.parentNode;
     pai.classList.add("selecionados");
     if (bool) {
@@ -195,10 +195,12 @@ function selecionarOpcao(el, bool) {
     }
     if (respondidas === pontos) {
         let pontuacao = Math.round((corretas / pontos) * 100);
-        while (quizzInfo.levels[i].minValue > pontuacao) {
-            i++;
+        for (let i=0; i<quizzInfo.levels.length; i++) {
+            if (pontuacao >= quizzInfo.levels[i].minValue) {
+                j=i;
+            }
         }
-        loadNivel(i);
+        loadNivel(j);
     }
 }
 
